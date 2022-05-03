@@ -478,12 +478,13 @@ open class DrawerController: UIViewController, TokenizedControlInternal {
 
         containerView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(containerView)
+        let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            containerView.topAnchor.constraint(equalTo: view.topAnchor)
+            containerView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            containerView.topAnchor.constraint(equalTo: safeArea.topAnchor)
         ])
-        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        containerViewBottomConstraint = containerView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
 
         // Tracking container size by monitoring its center instead of bounds due to ordering of calls
         containerViewCenterObservation = containerView.observe(\.center) { [unowned self] _, _ in

@@ -22,13 +22,23 @@ open class HeaderTokens: ControlTokens {
     open var backgroundColor: DynamicColor { aliasTokens.backgroundColors[.neutral1] }
 
     /// The color of the List Header text.
-    open var textColor: DynamicColor {
+    open var titleColor: DynamicColor {
         switch style {
         case .standard:
             return aliasTokens.foregroundColors[.neutral1]
         case .subtle:
             return aliasTokens.foregroundColors[.neutral3]
         }
+    }
+
+//    /// The color of the List Header title.
+//    open var titleColor: DynamicColor {
+//        return aliasTokens.foregroundColors[.neutral1]
+//    }
+
+    /// The color of the List Header subtitle
+    open var subtitleColor: DynamicColor {
+        return aliasTokens.foregroundColors[.neutral3]
     }
 
     /// Height of the List Header.
@@ -54,12 +64,22 @@ open class HeaderTokens: ControlTokens {
     open var trailingPadding: CGFloat { globalTokens.spacing[.medium] }
 
     /// The font used for the List Header.
-    open var textFont: FontInfo {
+    open var titleFont: FontInfo {
         switch style {
         case .standard:
             return aliasTokens.typography[.body1Strong]
         case .subtle:
             return aliasTokens.typography[.caption1]
         }
+    }
+
+    /// The font used for the List Header title.
+//    open var titleFont: FontInfo {
+//        return aliasTokens.typography[.body1Strong]
+//    }
+
+    /// The font used for the List Header subtitle.
+    open var subtitleFont: FontInfo {
+        return aliasTokens.typography[.caption1]
     }
 }

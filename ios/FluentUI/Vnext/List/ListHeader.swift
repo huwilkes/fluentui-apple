@@ -20,10 +20,17 @@ struct Header: View, ConfigurableTokenizedControl {
         }()
 
         HStack(spacing: 0) {
-            if let title = state.title, !title.isEmpty {
-                Text(title)
-                    .font(.fluent(tokens.textFont))
-                    .foregroundColor(Color(dynamicColor: tokens.textColor))
+            VStack(alignment: .leading, spacing: 0) {
+                if let title = state.title, !title.isEmpty {
+                    Text(title)
+                        .font(.fluent(tokens.titleFont))
+                        .foregroundColor(Color(dynamicColor: tokens.titleColor))
+                }
+                if let subtitle = state.subtitle, !subtitle.isEmpty {
+                    Text(subtitle)
+                        .font(.fluent(tokens.subtitleFont))
+                        .foregroundColor(Color(dynamicColor: tokens.subtitleColor))
+                }
             }
             Spacer()
         }
@@ -37,7 +44,9 @@ struct Header: View, ConfigurableTokenizedControl {
 
     let defaultTokens: HeaderTokens = .init()
     var tokens: HeaderTokens {
-        return resolvedTokens
+        let tokens = resolvedTokens
+        tokens.style = state.style
+        return tokens
     }
     @Environment(\.fluentTheme) var fluentTheme: FluentTheme
     @ObservedObject var state: MSFListSectionStateImpl

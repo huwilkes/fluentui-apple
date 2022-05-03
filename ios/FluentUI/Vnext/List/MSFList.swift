@@ -13,6 +13,12 @@ import SwiftUI
         let list = FluentList()
         state = list.state
         super.init(AnyView(list))
+        state.onSelectAction = { [weak self] in
+            guard let strongSelf = self, let action = strongSelf.action else {
+                return
+            }
+            action(strongSelf)
+        }
     }
 
     required public init?(coder: NSCoder) {
@@ -20,4 +26,7 @@ import SwiftUI
     }
 
     @objc public let state: MSFListState
+
+    /// Closure that handles the on select event.
+    @objc public var action: ((_ sender: MSFList) -> Void)?
 }

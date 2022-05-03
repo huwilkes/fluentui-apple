@@ -11,6 +11,9 @@ import SwiftUI
     /// Sets the Section title.
     var title: String? { get set }
 
+    /// Sets the Section subtitle
+    var subtitle: String? { get set }
+
     /// Sets a custom background color for the List Section.
     // TODO: Remove backgroundColor so that it will only be controlled by the tokens.
     var backgroundColor: UIColor? { get set }
@@ -51,6 +54,12 @@ import SwiftUI
     /// Configures the selection style of the List.
     var selectionStyle: MSFListSelectionStyle { get set }
 
+    /// The path to the selected Cell
+    var selectedItemIndexPath: IndexPath? { get set }
+
+    /// The action to perform after selection
+    var onSelectAction: (() -> Void)? { get set }
+
     /// Creates a new Section and appends it to the array of sections in a List.
     func createSection() -> MSFListSectionState
 
@@ -77,7 +86,7 @@ public struct FluentList: View {
         ScrollView {
             VStack(spacing: 0) {
                 ForEach(sections, id: \.self) { section in
-                    if let sectionTitle = section.title, !sectionTitle.isEmpty {
+                    if section.hasText {
                         Header(state: section)
                     }
 
@@ -135,6 +144,7 @@ class MSFListSectionStateImpl: NSObject, ObservableObject, Identifiable, Control
     @Published var overrideTokens: HeaderTokens?
     @Published private(set) var cells: [MSFListCellStateImpl] = []
     @Published var title: String?
+    @Published var subtitle: String?
     @Published var backgroundColor: UIColor?
     @Published var hasDividers: Bool = false
     var id = UUID()
@@ -146,7 +156,7 @@ class MSFListSectionStateImpl: NSObject, ObservableObject, Identifiable, Control
         return cells.count
     }
 
-    var style: MSFHeaderStyle
+    @Published var style: MSFHeaderStyle
 
     var selectionStyle: MSFListSelectionStyle = .trailingCheckmark {
         didSet {
@@ -154,6 +164,16 @@ class MSFListSectionStateImpl: NSObject, ObservableObject, Identifiable, Control
                 cell.selectionStyle = selectionStyle
             }
         }
+    }
+
+    var hasText: Bool {
+        if let title = title, !title.isEmpty {
+            return true
+        }
+        if let subtitle = subtitle, !subtitle.isEmpty {
+            return true
+        }
+        return false
     }
 
     func createCell() -> MSFListCellState {
@@ -182,6 +202,10 @@ class MSFListSectionStateImpl: NSObject, ObservableObject, Identifiable, Control
             preconditionFailure("Index is out of bounds")
         }
         return cells[index]
+    }
+
+    func getIndex(of cellState: MSFListCellStateImpl) -> Int? {
+        return cells.firstIndex(of: cellState)
     }
 
     func removeCell(at index: Int) {
@@ -221,7 +245,42 @@ class MSFListStateImpl: NSObject, ObservableObject, MSFListState {
         }
     }
 
+    var onSelectAction: (() -> Void)?
+
     var selectedCellState: MSFListCellStateImpl?
+
+    var selectedItemIndexPath: IndexPath? {
+        get {
+            guard let selectedCellState = selectedCellState else {
+                return nil
+            }
+
+            for (sectionIndex, section) in sections.enumerated() {
+                if let itemIndex = section.getIndex(of: selectedCellState) {
+                    return IndexPath(item: itemIndex, section: sectionIndex)
+                }
+            }
+            return nil
+        }
+        set {
+            guard let newValue = newValue else {
+                return
+            }
+            let sectionIndex = newValue.section
+            let itemIndex = newValue.item
+            guard sectionIndex < sections.count,
+                  itemIndex < sections[sectionIndex].cellCount else {
+                return
+            }
+            if let selectedCellState = selectedCellState {
+                selectedCellState.isSelected = false
+            }
+            if let selectedItemState = sections[sectionIndex].getCellState(at: itemIndex) as? MSFListCellStateImpl {
+                selectedItemState.isSelected = true
+                selectedCellState = selectedItemState
+            }
+        }
+    }
 
     func createSection() -> MSFListSectionState {
         return createSection(at: sections.endIndex)
@@ -243,6 +302,10 @@ class MSFListStateImpl: NSObject, ObservableObject, MSFListState {
             }
             selectedCell.isSelected = true
             strongSelf.selectedCellState = selectedCell
+
+            if let onSelectAction = strongSelf.onSelectAction {
+                onSelectAction()
+            }
         }
         sections.insert(section, at: index)
         return section

@@ -6,6 +6,19 @@
 import UIKit
 import SwiftUI
 
+/// Defines the timing for the call of the onTapAction closure/block
+@objc(MSFListExecutionMode)
+public enum ListExecutionMode: Int {
+    /// `onSelected` is called right after item is tapped, before popup menu dismissal
+    case onSelection
+    /// `onSelected` is called right after item is tapped, but prevent popup menu dismissal
+    case onSelectionWithoutDismissal
+    /// `onSelected` is called after popup menu is dismissed, but before its `onDismissCompleted` is called
+    case afterPopupMenuDismissal
+    /// `onSelected` is called after popup menu is dismissed and its `onDismissCompleted` is called
+    case afterPopupMenuDismissalCompleted
+}
+
 /// Properties that can be used to customize the appearance of the List Cell.
 @objc public protocol MSFListCellState {
     /// Custom view on the leading side of the Cell.
@@ -77,6 +90,11 @@ import SwiftUI
     /// The number of children cells in the Cell.
     var childrenCellCount: Int { get }
 
+    /// Configures when the cell executes the onTapAction
+    var executionMode: ListExecutionMode { get set }
+
+    var overrideTokens: CellBaseTokens? { get set }
+
     /// Creates a new child cell and appends it to the array of children cells in a Cell.
     func createChildCell() -> MSFListCellState
 
@@ -129,6 +147,7 @@ class MSFListCellStateImpl: NSObject, ObservableObject, Identifiable, ControlCon
     var onSelectAction: ((MSFListCellStateImpl) -> Void)?
     @Published var isSelected: Bool = false
     var selectionStyle: MSFListSelectionStyle = .trailingCheckmark
+    var executionMode: ListExecutionMode = .onSelection
 
     var leadingUIView: UIView? {
         didSet {
@@ -406,7 +425,10 @@ struct MSFListCellView: View, ConfigurableTokenizedControl {
                 } else if let onSelectAction = state.onSelectAction {
                     onSelectAction(state)
                 }
-                if let onTapAction = state.onTapAction {
+                let executionMode = state.executionMode
+                if executionMode == .onSelection ||
+                   executionMode == .onSelectionWithoutDismissal,
+                   let onTapAction = state.onTapAction {
                     onTapAction()
                 }
             }, label: {

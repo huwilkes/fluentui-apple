@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // MARK: PopupMenu Colors
 
@@ -348,5 +349,300 @@ extension PopupMenuController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedItemIndexPath = indexPath
         didSelectItem(item(at: indexPath))
+    }
+}
+
+@objc(MSFPopupMenuListController)
+open class PopupMenuListController: DrawerController {
+//    private struct Constants {
+        let minimumContentWidth: CGFloat = 250
+//
+//        static let descriptionHorizontalMargin: CGFloat = 16
+//        static let descriptionVerticalMargin: CGFloat = 12
+//    }
+
+    open override var contentView: UIView? { get { return super.contentView } set { } }
+
+    open override var presentationStyle: DrawerPresentationStyle { get { return .automatic } set { } }
+    open override var resizingBehavior: DrawerResizingBehavior { get { return .dismiss } set { } }
+
+    open override var preferredContentSize: CGSize { get { return super.preferredContentSize } set { } }
+    open override var preferredContentWidth: CGFloat {
+        let listWidth = list.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width
+        return max(minimumContentWidth, listWidth)
+    }
+//        return max(minimumContentWidth, list.frame.width)
+//    }
+//        var width = Constants.minimumContentWidth
+//        if let headerItem = headerItem {
+//            if !descriptionView.isHidden {
+//                let size = descriptionView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+//                width = max(width, size.width)
+//            } else {
+//                width = max(width, headerItem.cellClass.preferredWidth(for: headerItem, preservingSpaceForImage: false))
+//            }
+//        }
+//        for section in sections {
+//            width = max(width, PopupMenuSectionHeaderView.preferredWidth(for: section))
+//            for item in section.items {
+//                width = max(width, item.cellClass.preferredWidth(for: item, preservingSpaceForImage: itemsHaveImages))
+//            }
+//        }
+//        return width
+//    }
+//    open override var preferredContentHeight: CGFloat {
+//        var height: CGFloat = 0
+//        if !(headerItemImpl.title.isEmpty && headerItemImpl.subtitle.isEmpty) {
+//            height += headerView.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .infinity), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel).height
+//        }
+//        height += list.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+//        return height
+//    }
+//        var height: CGFloat = 0
+//        if let headerItem = headerItem {
+//            if !descriptionView.isHidden {
+//                let size = descriptionView.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .infinity), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+//                height += size.height
+//            } else {
+//                height += headerItem.cellClass.preferredHeight(for: headerItem)
+//            }
+//        }
+//        for section in sections {
+//            height += PopupMenuSectionHeaderView.preferredHeight(for: section)
+//            for item in section.items {
+//                height += item.cellClass.preferredHeight(for: item)
+//            }
+//        }
+//        return height
+//    }
+//
+//    /// Set `backgroundColor` to customize background color of controller' view and its tableView
+//    open override var backgroundColor: UIColor {
+//        didSet {
+//            tableView.backgroundColor = backgroundColor
+//        }
+//    }
+//
+    override var tracksContentHeight: Bool { return false }
+
+    /**
+     Set `headerItem` to show a menu header. If `subtitle` is present then a 2-line header will be shown. If only `title` is provided then a 1-line description will be presented. In this case a multi-line text is supported.
+
+     Header is not interactable and does not scroll.
+     */
+//    @objc open var headerItem: PopupMenuItem? {
+//        didSet {
+//            descriptionView.isHidden = true
+//            headerView.isHidden = true
+//            if let headerItem = headerItem {
+//                if headerItem.subtitle == nil {
+//                    descriptionView.isHidden = false
+//                    descriptionLabel.text = headerItem.title
+//                    descriptionView.accessibilityLabel = headerItem.title
+//                } else {
+//                    headerView.isHidden = false
+//                    headerView.setup(item: headerItem)
+//                }
+//            }
+//        }
+//    }
+
+    private lazy var headerView: MSFPopupMenuHeader = {
+        let header = MSFPopupMenuHeader(state: headerItemImpl)
+        header.isUserInteractionEnabled = false
+        header.isAccessibilityElement = true
+        header.accessibilityTraits.insert(.header)
+        return header
+    }()
+
+    private let headerItemImpl: MSFListCellStateImpl = {
+        let state = MSFListCellStateImpl()
+        state.hasDivider = true
+        return state
+    }()
+
+    @objc public var headerItem: MSFListCellState {
+            return headerItemImpl
+    }
+
+    @objc open var selectedItemIndexPath: IndexPath? {
+        get {
+            return list.state.selectedItemIndexPath
+        }
+        set {
+            list.state.selectedItemIndexPath = newValue
+        }
+    }
+
+    /// set `separatorColor` to customize separator colors of  PopupMenuItem cells and the drawer
+//    @objc open var separatorColor: UIColor = Colors.Separator.default {
+//        didSet {
+//            let customTokens = PopupMenuItemCell.CustomDividerTokens(separatorColor)
+//            divider.state.overrideTokens = customTokens
+//        }
+//    }
+
+//    private var itemsHaveImages: Bool {
+//        return sections.contains(where: { $0.items.contains(where: {
+//            let item = $0 as? PopupMenuItem
+//            return item?.image != nil
+//        })
+//        })
+//    }
+
+    private var itemForExecutionAfterPopupMenuDismissal: MSFListCellState?
+
+    private lazy var containerView: UIView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.addArrangedSubview(headerView)
+        stack.addArrangedSubview(list)
+        return stack
+    }()
+
+//    private lazy var divider: MSFDivider = .init()
+//    private lazy var descriptionView: UIView = {
+//        let view = UIView()
+//        view.isAccessibilityElement = true
+//        view.accessibilityTraits.insert(.header)
+//        view.isHidden = true
+//
+//        view.addSubview(descriptionLabel)
+//        descriptionLabel.fitIntoSuperview(
+//            usingConstraints: true,
+//            margins: UIEdgeInsets(
+//                top: Constants.descriptionVerticalMargin,
+//                left: Constants.descriptionHorizontalMargin,
+//                bottom: Constants.descriptionVerticalMargin,
+//                right: Constants.descriptionHorizontalMargin
+//            )
+//        )
+//
+//        let customTokens = PopupMenuItemCell.CustomDividerTokens(separatorColor)
+//        divider.state.overrideTokens = customTokens
+//        view.addSubview(divider)
+//        divider.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            divider.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            divider.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            divider.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        ])
+//
+//        return view
+//    }()
+//    private let descriptionLabel: Label = {
+//        let label = Label(style: .footnote)
+//        label.textColor = Colors.PopupMenu.description
+//        label.textAlignment = .center
+//        label.numberOfLines = 0
+//        return label
+//    }()
+//    private let headerView: PopupMenuItemCell = {
+//        let view = PopupMenuItemCell(frame: .zero)
+//        view.isHeader = true
+//        view.isHidden = true
+//        return view
+//    }()
+
+    open override func initialize() {
+        super.initialize()
+        list.action = { [weak self] _ in
+            guard let strongSelf = self else {
+                return
+            }
+
+            strongSelf.didSelectItem()
+        }
+    }
+
+    open func createItem() -> MSFListCellState {
+        let listState = list.state
+        let sectionCount = listState.sectionCount
+        let section: MSFListSectionState
+        if sectionCount > 0 {
+            section = listState.getSectionState(at: sectionCount - 1)
+        } else {
+            section = createSection()
+        }
+        return section.createCell()
+    }
+
+    open func createSection() -> MSFListSectionState {
+        let section = list.state.createSection()
+        section.hasDividers = true
+        return section
+    }
+
+    private var list: MSFList = {
+        let list = MSFList()
+        list.state.allowsSelection = true
+        return list
+    }()
+
+    open override func didDismiss() {
+        afterDismissalActions()
+        super.didDismiss()
+        afterDismissalCompleteActions()
+    }
+
+    private func afterDismissalActions() {
+        guard let item = itemForExecutionAfterPopupMenuDismissal,
+              item.executionMode == .afterPopupMenuDismissal,
+              let onTapAction = item.onTapAction else {
+            return
+        }
+
+        onTapAction()
+        itemForExecutionAfterPopupMenuDismissal = nil
+    }
+
+    private func afterDismissalCompleteActions () {
+        guard let item = itemForExecutionAfterPopupMenuDismissal,
+              item.executionMode == .afterPopupMenuDismissalCompleted,
+              let onTapAction = item.onTapAction else {
+            return
+        }
+
+        onTapAction()
+        itemForExecutionAfterPopupMenuDismissal = nil
+    }
+
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        super.contentView = containerView
+        headerView.isHidden = headerItemImpl.title.isEmpty && headerItemImpl.subtitle.isEmpty
+    }
+
+    private func didSelectItem() {
+        guard let selectedItemIndexPath = selectedItemIndexPath else {
+            return
+        }
+
+        let selectedItem = list.state.getSectionState(at: selectedItemIndexPath.section).getCellState(at: selectedItemIndexPath.item)
+        let executionMode = selectedItem.executionMode
+        if executionMode == .afterPopupMenuDismissal ||
+            executionMode == .afterPopupMenuDismissalCompleted {
+            itemForExecutionAfterPopupMenuDismissal = selectedItem
+        }
+        if !isBeingDismissed && executionMode != .onSelectionWithoutDismissal {
+            presentingViewController?.dismiss(animated: true)
+        }
+    }
+}
+
+/// UIKit wrapper that exposes the SwiftUI ListCell for use in PopupMenu implementation
+class MSFPopupMenuHeader: ControlHostingView {
+
+    init(state: MSFListCellStateImpl) {
+        state.backgroundColor = .lightGray
+        let listCell = MSFListCellView(state: state)
+        super.init(AnyView(listCell))
+        setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        setContentHuggingPriority(.defaultHigh, for: .vertical)
+    }
+
+    required public init?(coder: NSCoder) {
+        preconditionFailure("init(coder:) has not been implemented")
     }
 }

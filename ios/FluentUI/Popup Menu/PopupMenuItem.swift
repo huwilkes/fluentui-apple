@@ -68,3 +68,61 @@ open class PopupMenuItem: NSObject, PopupMenuTemplateItem {
         self.init(image: image, selectedImage: selectedImage, title: title, subtitle: subtitle, isEnabled: isEnabled, isSelected: isSelected, executes: executionMode, onSelected: onSelected, isAccessoryCheckmarkVisible: isAccessoryCheckmarkVisible)
     }
 }
+
+/**
+`PopupMenuTemplateItem` represents a template item protocol inside `PopupMenuController`.
+ The built-in type is `PopupMenuItem`.
+ You can use object conforms to this protocol for customization.
+*/
+@objc(MSFPopupMenuListTemplateItem)
+public protocol PopupMenuListTemplateItem: AnyObject {
+    /// The custom cell class for `PopupMenuController`
+//    @objc var cellClass: PopupMenuItemTemplateCell.Type { get set}
+    @objc var executionMode: ExecutionMode { get }
+    @objc var isSelected: Bool { get set }
+    @objc var onSelected: (() -> Void)? { get }
+}
+
+/**
+ `PopupMenuItem` represents a menu item inside `PopupMenuController`.
+ */
+@objc(MSFPopupMenuListItem)
+open class PopupMenuListItem: NSObject, PopupMenuListTemplateItem {
+
+//    @objc public var cellClass: PopupMenuItemTemplateCell.Type
+
+    @objc public let image: UIImage?
+    @objc public let selectedImage: UIImage?
+    @objc public let accessoryImage: UIImage?
+    @objc public let title: String
+    @objc public let subtitle: String?
+    @objc public let accessoryView: UIView?
+
+    @objc public let executionMode: ExecutionMode
+
+    @objc public var isEnabled: Bool = true
+    @objc public var isSelected: Bool = false
+
+    @objc public let onSelected: (() -> Void)?
+
+    @objc public init(image: UIImage? = nil, selectedImage: UIImage? = nil, accessoryImage: UIImage? = nil, title: String, subtitle: String? = nil, accessoryView: UIView? = nil, isEnabled: Bool = true, isSelected: Bool = false, executes executionMode: ExecutionMode = .onSelection, onSelected: (() -> Void)? = nil) {
+//        self.cellClass = PopupMenuItemCell.self
+        self.image = image?.renderingMode == .automatic ? image?.withRenderingMode(.alwaysTemplate) : image
+        self.selectedImage = selectedImage ?? image?.withRenderingMode(.alwaysTemplate)
+        self.accessoryImage = accessoryImage
+        self.title = title
+        self.subtitle = subtitle
+        self.accessoryView = accessoryView
+        self.isEnabled = isEnabled
+        self.isSelected = isSelected
+        self.executionMode = executionMode
+        self.onSelected = onSelected
+        super.init()
+    }
+
+    @objc public convenience init(imageName: String, generateSelectedImage: Bool = true, title: String, subtitle: String? = nil, isEnabled: Bool = true, isSelected: Bool = false, executes executionMode: ExecutionMode = .onSelection, onSelected: (() -> Void)? = nil) {
+        let image = UIImage(named: imageName)
+        let selectedImage = generateSelectedImage ? nil : image
+        self.init(image: image, selectedImage: selectedImage, title: title, subtitle: subtitle, isEnabled: isEnabled, isSelected: isSelected, executes: executionMode, onSelected: onSelected)
+    }
+}
