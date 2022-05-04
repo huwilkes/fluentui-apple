@@ -37,6 +37,7 @@ struct Demos {
         DemoDescriptor("PillButtonBar", PillButtonBarDemoController.self),
         DemoDescriptor("SegmentedControl", SegmentedControlDemoController.self),
         DemoDescriptor("Shapes", ShapesDemoController.self),
+        DemoDescriptor("Square Group", SquareGroupDemoController.self),
         DemoDescriptor("TabBarView", TabBarViewDemoController.self)
     ]
 

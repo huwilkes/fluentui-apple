@@ -215,6 +215,7 @@
 		EC27B86B2821FCE000A40B9A /* Circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B86A2821FCE000A40B9A /* Circle.swift */; };
 		EC27B86D2821FCEE00A40B9A /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B86C2821FCEE00A40B9A /* Shapes.swift */; };
 		EC27B8732822EF7700A40B9A /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8722822EF7700A40B9A /* Square.swift */; };
+		EC27B875282312EF00A40B9A /* SquareGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B874282312EF00A40B9A /* SquareGroup.swift */; };
 		EC5982D827BF348700FD048D /* MSFAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5982D727BF348700FD048D /* MSFAvatar.swift */; };
 		EC5982DA27C703EE00FD048D /* CircleCutout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5982D927C703ED00FD048D /* CircleCutout.swift */; };
 		EC5982DC27CEC02100FD048D /* DrawerTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5982DB27CEC02100FD048D /* DrawerTokens.swift */; };
@@ -405,6 +406,7 @@
 		EC27B86A2821FCE000A40B9A /* Circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circle.swift; sourceTree = "<group>"; };
 		EC27B86C2821FCEE00A40B9A /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		EC27B8722822EF7700A40B9A /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
+		EC27B874282312EF00A40B9A /* SquareGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareGroup.swift; sourceTree = "<group>"; };
 		EC5982D727BF348700FD048D /* MSFAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSFAvatar.swift; sourceTree = "<group>"; };
 		EC5982D927C703ED00FD048D /* CircleCutout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCutout.swift; sourceTree = "<group>"; };
 		EC5982DB27CEC02100FD048D /* DrawerTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTokens.swift; sourceTree = "<group>"; };
@@ -1152,6 +1154,7 @@
 				EC27B86A2821FCE000A40B9A /* Circle.swift */,
 				EC27B86C2821FCEE00A40B9A /* Shapes.swift */,
 				EC27B8722822EF7700A40B9A /* Square.swift */,
+				EC27B874282312EF00A40B9A /* SquareGroup.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -1588,6 +1591,7 @@
 				0AD70F5B26E80A5D008774EC /* CommandBarTokens.swift in Sources */,
 				D6F4098927470E7F001B80D4 /* PillButtonTokens.swift in Sources */,
 				5314E26625F023B20099271A /* UIColor+Extensions.swift in Sources */,
+				EC27B875282312EF00A40B9A /* SquareGroup.swift in Sources */,
 				5314E30225F0260E0099271A /* AccessibilityContainerView.swift in Sources */,
 				53097D05270288FB00A6E4DC /* MSFButton.swift in Sources */,
 				8035CAD026377C17007B3FD1 /* CommandingItem.swift in Sources */,

@@ -77,6 +77,8 @@
 		EC02A5F9274EED9200E81B3E /* DividerDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC02A5F8274EED9200E81B3E /* DividerDemoController_SwiftUI.swift */; };
 		EC27B86F282217E000A40B9A /* ShapesDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B86E282217E000A40B9A /* ShapesDemoController_SwiftUI.swift */; };
 		EC27B8712822194600A40B9A /* ShapesDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8702822194600A40B9A /* ShapesDemoController.swift */; };
+		EC27B87728232C7B00A40B9A /* SquareGroupDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87628232C7B00A40B9A /* SquareGroupDemoController.swift */; };
+		EC27B87928232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87828232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift */; };
 		EC6A71EC273DE6DF0076A586 /* DividerDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A71EB273DE6DF0076A586 /* DividerDemoController.swift */; };
 		ECCABFB227DFFA070037C70C /* ColoredPillBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCABFB127DFFA070037C70C /* ColoredPillBackgroundView.swift */; };
 		FC414E3725888BC300069E73 /* CommandBarDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC414E3625888BC300069E73 /* CommandBarDemoController.swift */; };
@@ -150,6 +152,8 @@
 		EC02A5F8274EED9200E81B3E /* DividerDemoController_SwiftUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DividerDemoController_SwiftUI.swift; sourceTree = "<group>"; };
 		EC27B86E282217E000A40B9A /* ShapesDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDemoController_SwiftUI.swift; sourceTree = "<group>"; };
 		EC27B8702822194600A40B9A /* ShapesDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDemoController.swift; sourceTree = "<group>"; };
+		EC27B87628232C7B00A40B9A /* SquareGroupDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareGroupDemoController.swift; sourceTree = "<group>"; };
+		EC27B87828232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareGroupDemoController_SwiftUI.swift; sourceTree = "<group>"; };
 		EC6A71EB273DE6DF0076A586 /* DividerDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerDemoController.swift; sourceTree = "<group>"; };
 		EC8EA6AF2580D82A00F191CE /* ListDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDemoController.swift; sourceTree = "<group>"; };
 		ECCABFB127DFFA070037C70C /* ColoredPillBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPillBackgroundView.swift; sourceTree = "<group>"; };
@@ -368,6 +372,8 @@
 				FD7DF06121FB941400857267 /* TooltipDemoController.swift */,
 				EC27B8702822194600A40B9A /* ShapesDemoController.swift */,
 				EC27B86E282217E000A40B9A /* ShapesDemoController_SwiftUI.swift */,
+				EC27B87628232C7B00A40B9A /* SquareGroupDemoController.swift */,
+				EC27B87828232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -514,6 +520,7 @@
 				9245E1F927BECDBB007616F3 /* ColorTokensDemoController.swift in Sources */,
 				A5DCA760211E3B4C005F4CB7 /* DemoController.swift in Sources */,
 				53097D3327028A7B00A6E4DC /* LeftNavDemoController.swift in Sources */,
+				EC27B87728232C7B00A40B9A /* SquareGroupDemoController.swift in Sources */,
 				5328D97B26FBA3EA00F3723B /* IndeterminateProgressBarDemoController.swift in Sources */,
 				5373D55F2694C3070032A3B4 /* AvatarDemoController.swift in Sources */,
 				7D0931C124AAA3D30072458A /* SideTabBarDemoController.swift in Sources */,
@@ -539,6 +546,7 @@
 				43488C4A270FB7E800124C71 /* NotificationViewDemoController_SwiftUI.swift in Sources */,
 				53097D3527028A7B00A6E4DC /* ButtonLegacyDemoController.swift in Sources */,
 				92B45E4E279A1A0B00E72517 /* DemoAppearanceController.swift in Sources */,
+				EC27B87928232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift in Sources */,
 				E6842974247B672000A29C40 /* SceneDelegate.swift in Sources */,
 				53097D3C27028AD000A6E4DC /* HUDDemoController.swift in Sources */,
 				92E977B826C7144F008E10A8 /* DemoControllerScrollView.swift in Sources */,
