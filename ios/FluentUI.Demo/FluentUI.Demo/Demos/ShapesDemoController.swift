@@ -43,46 +43,6 @@ class ShapesDemoController: DemoTableViewController {
             cell.accessoryType = .disclosureIndicator
 
             return cell
-//        case .dividerDemo:
-//            let cell = TableViewCell()
-//            cell.backgroundColor = Colors.surfacePrimary
-//            let contentView = cell.contentView
-//
-//            let spacing: MSFDividerSpacing = section == .defaultMedium ? .medium : .none
-//            let useCustomColor = section == .customColor
-//
-//            let verticalStack = UIStackView()
-//            verticalStack.translatesAutoresizingMaskIntoConstraints = false
-//            verticalStack.axis = .vertical
-//            verticalStack.isLayoutMarginsRelativeArrangement = true
-//            verticalStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
-//            verticalStack.addArrangedSubview(makeDivider(spacing: spacing, customColor: useCustomColor))
-//            verticalStack.distribution = .equalCentering
-//
-//            let horizontalStack = UIStackView()
-//            horizontalStack.distribution = .equalCentering
-//            horizontalStack.addArrangedSubview(makeDivider(orientation: .vertical, spacing: spacing, customColor: useCustomColor))
-//            let text1 = Label(style: .subhead, colorStyle: .regular)
-//            text1.text = "Text 1"
-//            horizontalStack.addArrangedSubview(text1)
-//            horizontalStack.addArrangedSubview(makeDivider(orientation: .vertical, spacing: spacing, customColor: useCustomColor))
-//            let text2 = Label(style: .subhead, colorStyle: .regular)
-//            text2.text = "Text 2"
-//            horizontalStack.addArrangedSubview(text2)
-//            horizontalStack.addArrangedSubview(makeDivider(orientation: .vertical, spacing: spacing, customColor: useCustomColor))
-//            verticalStack.addArrangedSubview(horizontalStack)
-//
-//            verticalStack.addArrangedSubview(makeDivider(spacing: spacing, customColor: useCustomColor))
-//
-//            contentView.addSubview(verticalStack)
-//            NSLayoutConstraint.activate([
-//                contentView.leadingAnchor.constraint(equalTo: verticalStack.leadingAnchor),
-//                contentView.trailingAnchor.constraint(equalTo: verticalStack.trailingAnchor),
-//                contentView.topAnchor.constraint(equalTo: verticalStack.topAnchor),
-//                contentView.bottomAnchor.constraint(equalTo: verticalStack.bottomAnchor)
-//            ])
-//
-//            return cell
         }
     }
 
@@ -107,38 +67,6 @@ class ShapesDemoController: DemoTableViewController {
                                                      animated: true)
         }
     }
-
-    private func makeDivider(orientation: MSFDividerOrientation = .horizontal, spacing: MSFDividerSpacing, customColor: Bool) -> MSFDivider {
-        let divider = MSFDivider(orientation: orientation, spacing: spacing)
-        if customColor {
-            let color = Colors.communicationBlue
-            let dividerTokens = customDividerTokens(spacing: spacing, color: color)
-            divider.state.overrideTokens = dividerTokens
-        }
-
-        dividers.append(divider)
-
-        return divider
-    }
-
-    private func customDividerTokens(spacing: MSFDividerSpacing, color: UIColor) -> DividerTokens {
-        /// Private internal subclass of `DividerTokens`.
-        class CustomDividerTokens: DividerTokens {
-            var customColor: UIColor?
-            override var color: DynamicColor {
-                return customColor?.dynamicColor ?? super.color
-            }
-
-            convenience init(_ customColor: UIColor?) {
-                self.init()
-                self.customColor = customColor
-            }
-        }
-
-        return CustomDividerTokens(color)
-    }
-
-    private var dividers: [MSFDivider] = []
 
     private enum ShapesDemoSection: CaseIterable {
         case swiftUI
@@ -177,42 +105,3 @@ class ShapesDemoController: DemoTableViewController {
         }
     }
 }
-
-//extension DividerDemoController: DemoAppearanceDelegate {
-//    func themeWideOverrideDidChange(isOverrideEnabled: Bool) {
-//        guard let fluentTheme = self.view.window?.fluentTheme else {
-//            return
-//        }
-//        if isOverrideEnabled {
-//            fluentTheme.register(controlType: FluentDivider.self, tokens: { _ in
-//                ThemeWideOverrideDividerTokens()
-//            })
-//        } else {
-//            fluentTheme.register(controlType: FluentDivider.self, tokens: nil)
-//        }
-//    }
-//
-//    func perControlOverrideDidChange(isOverrideEnabled: Bool) {
-//        dividers.forEach { divider in
-//            divider.state.overrideTokens = (isOverrideEnabled ? PerControlOverrideDividerTokens() : nil)
-//        }
-//    }
-//
-//    func isThemeWideOverrideApplied() -> Bool {
-//        return self.view.window?.fluentTheme.tokenOverride(for: FluentDivider.self) != nil
-//    }
-//
-//    // MARK: - Custom tokens
-//
-//    private class ThemeWideOverrideDividerTokens: DividerTokens {
-//        override var color: DynamicColor {
-//            return DynamicColor(light: GlobalTokens().sharedColors[.red][.primary])
-//        }
-//    }
-//
-//    private class PerControlOverrideDividerTokens: DividerTokens {
-//        override var color: DynamicColor {
-//            return DynamicColor(light: GlobalTokens().sharedColors[.green][.primary])
-//        }
-//    }
-//}
