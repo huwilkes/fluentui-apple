@@ -99,7 +99,7 @@ struct SplitSquareGroupDemoView: View {
                                    topRows: topRows,
                                    bottomRows: bottomRows,
                                    cols: cols)
-                .overrideTokens(CustomSpliSquareGroupTokens(customBackgroundColor: backgroundColor,
+                .overrideTokens(CustomSplitSquareGroupTokens(customBackgroundColor: backgroundColor,
                                                             customSquareBackgroundColor: squareBackgroundColor,
                                                             customSquareBorderColor: squareBorderColor,
                                                             customTopSquareSide: topSide,
@@ -164,7 +164,7 @@ struct SplitSquareGroupDemoView: View {
     }
 }
 
-private class CustomSpliSquareGroupTokens: SplitSquareGroupTokens {
+private class CustomSplitSquareGroupTokens: SplitSquareGroupTokens {
     var customBackgroundColor: Color = .black
     var customSquareBackgroundColor: Color = .white
     var customSquareBorderColor: Color = .green
