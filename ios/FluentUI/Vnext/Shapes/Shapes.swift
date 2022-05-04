@@ -37,44 +37,44 @@ class MSFShapesStateImpl: NSObject, ObservableObject, ControlConfiguration, MSFS
 }
 
 open class ShapesTokens: ControlTokens {
-    private var circleTokens: CircleTokens = .init()
-    private var rectangleTokens: RectangleTokens = .init()
-    private var squareTokens: SquareTokens = .init()
+    private lazy var defaultCircleTokens: CircleTokens = .init()
+    private lazy var defaultRectangleTokens: RectangleTokens = .init()
+    private lazy var defaultSquareTokens: SquareTokens = .init()
 
     open var backgroundColor: DynamicColor {
         aliasTokens.backgroundColors[.neutral5]
     }
 
     open var circleBackgroundColor: DynamicColor {
-        circleTokens.backgroundColor
+        defaultCircleTokens.backgroundColor
     }
 
     open var circleBorderColor: DynamicColor {
-        circleTokens.borderColor
+        defaultCircleTokens.borderColor
     }
 
     open var circleDiameter: CGFloat {
-        circleTokens.diameter
+        defaultCircleTokens.diameter
     }
 
     open var circleBorderThickness: CGFloat {
-        circleTokens.borderThickness
+        defaultCircleTokens.borderThickness
     }
 
     open var rectangleBackgroundColor: DynamicColor {
-        rectangleTokens.backgroundColor
+        defaultRectangleTokens.backgroundColor
     }
 
     open var rectangleBorderColor: DynamicColor {
-        rectangleTokens.borderColor
+        defaultRectangleTokens.borderColor
     }
 
     open var rectangleCorerRadius: CGFloat {
-        rectangleTokens.cornerRadius
+        defaultRectangleTokens.cornerRadius
     }
 
     open var squareSide: CGFloat {
-        squareTokens.side
+        defaultSquareTokens.side
     }
 }
 
