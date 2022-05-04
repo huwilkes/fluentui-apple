@@ -79,6 +79,8 @@
 		EC27B8712822194600A40B9A /* ShapesDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8702822194600A40B9A /* ShapesDemoController.swift */; };
 		EC27B87728232C7B00A40B9A /* SquareGroupDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87628232C7B00A40B9A /* SquareGroupDemoController.swift */; };
 		EC27B87928232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87828232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift */; };
+		EC27B87D28233B5200A40B9A /* SplitSquareGroupDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87C28233B5200A40B9A /* SplitSquareGroupDemoController.swift */; };
+		EC27B87F28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87E28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift */; };
 		EC6A71EC273DE6DF0076A586 /* DividerDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A71EB273DE6DF0076A586 /* DividerDemoController.swift */; };
 		ECCABFB227DFFA070037C70C /* ColoredPillBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCABFB127DFFA070037C70C /* ColoredPillBackgroundView.swift */; };
 		FC414E3725888BC300069E73 /* CommandBarDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC414E3625888BC300069E73 /* CommandBarDemoController.swift */; };
@@ -154,6 +156,8 @@
 		EC27B8702822194600A40B9A /* ShapesDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapesDemoController.swift; sourceTree = "<group>"; };
 		EC27B87628232C7B00A40B9A /* SquareGroupDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareGroupDemoController.swift; sourceTree = "<group>"; };
 		EC27B87828232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareGroupDemoController_SwiftUI.swift; sourceTree = "<group>"; };
+		EC27B87C28233B5200A40B9A /* SplitSquareGroupDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSquareGroupDemoController.swift; sourceTree = "<group>"; };
+		EC27B87E28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSquareGroupDemoController_SwiftUI.swift; sourceTree = "<group>"; };
 		EC6A71EB273DE6DF0076A586 /* DividerDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerDemoController.swift; sourceTree = "<group>"; };
 		EC8EA6AF2580D82A00F191CE /* ListDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDemoController.swift; sourceTree = "<group>"; };
 		ECCABFB127DFFA070037C70C /* ColoredPillBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPillBackgroundView.swift; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 				EC27B86E282217E000A40B9A /* ShapesDemoController_SwiftUI.swift */,
 				EC27B87628232C7B00A40B9A /* SquareGroupDemoController.swift */,
 				EC27B87828232C8F00A40B9A /* SquareGroupDemoController_SwiftUI.swift */,
+				EC27B87C28233B5200A40B9A /* SplitSquareGroupDemoController.swift */,
+				EC27B87E28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -533,6 +539,7 @@
 				EC27B86F282217E000A40B9A /* ShapesDemoController_SwiftUI.swift in Sources */,
 				53097D3A27028AC900A6E4DC /* DateTimePickerDemoController.swift in Sources */,
 				53097D3827028AA400A6E4DC /* ListDemoController.swift in Sources */,
+				EC27B87F28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift in Sources */,
 				B4D852DB225C010A004B1B29 /* ButtonDemoController.swift in Sources */,
 				ECCABFB227DFFA070037C70C /* ColoredPillBackgroundView.swift in Sources */,
 				53097D4127028AEA00A6E4DC /* PopupMenuDemoController.swift in Sources */,
@@ -559,6 +566,7 @@
 				53097D3E27028ADC00A6E4DC /* NotificationViewDemoController.swift in Sources */,
 				5328D97A26FBA3EA00F3723B /* IndeterminateProgressBarDemoController_SwiftUI.swift in Sources */,
 				B498141621E42C140077B48D /* TableViewCellDemoController.swift in Sources */,
+				EC27B87D28233B5200A40B9A /* SplitSquareGroupDemoController.swift in Sources */,
 				FDCF7C8321BF35680058E9E6 /* SegmentedControlDemoController.swift in Sources */,
 				92DD1E8D279F496300FDEE0F /* DemoAppearanceView.swift in Sources */,
 				53097D4027028AE500A6E4DC /* PersonaButtonCarouselDemoController.swift in Sources */,

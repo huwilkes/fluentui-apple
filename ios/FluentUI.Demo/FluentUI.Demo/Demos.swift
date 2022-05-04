@@ -38,6 +38,7 @@ struct Demos {
         DemoDescriptor("SegmentedControl", SegmentedControlDemoController.self),
         DemoDescriptor("Shapes", ShapesDemoController.self),
         DemoDescriptor("Square Group", SquareGroupDemoController.self),
+        DemoDescriptor("Split Square Group", SplitSquareGroupDemoController.self),
         DemoDescriptor("TabBarView", TabBarViewDemoController.self)
     ]
 

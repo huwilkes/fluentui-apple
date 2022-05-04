@@ -7,7 +7,7 @@ import FluentUI
 import UIKit
 import SwiftUI
 
-class SplitSquareGroupDemoController: DemoTableViewController {
+class SquareGroupDemoController: DemoTableViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(style: .grouped)
     }
@@ -63,7 +63,7 @@ class SplitSquareGroupDemoController: DemoTableViewController {
 
         switch ShapesDemoSection.allCases[indexPath.section].rows[indexPath.row] {
         case .swiftUIDemo:
-            navigationController?.pushViewController(SplitSquareGroupDemoControllerSwiftUI(),
+            navigationController?.pushViewController(SquareGroupDemoControllerSwiftUI(),
                                                      animated: true)
         }
     }
