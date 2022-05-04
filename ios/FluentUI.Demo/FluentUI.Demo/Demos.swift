@@ -36,6 +36,7 @@ struct Demos {
         DemoDescriptor("PersonaButtonCarousel", PersonaButtonCarouselDemoController.self),
         DemoDescriptor("PillButtonBar", PillButtonBarDemoController.self),
         DemoDescriptor("SegmentedControl", SegmentedControlDemoController.self),
+        DemoDescriptor("Shapes", ShapesDemoController.self),
         DemoDescriptor("TabBarView", TabBarViewDemoController.self)
     ]
 
