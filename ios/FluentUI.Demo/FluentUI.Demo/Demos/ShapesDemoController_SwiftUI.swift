@@ -124,7 +124,7 @@ private class CustomShapesTokens: ShapesTokens {
         self.customCircleDiameter = customCircleDiameter
         self.customCircleBorderThickness = customCircleBorderThickness
         self.customRectangleBackgroundColor = customRectangleBackgroundColor
-        self.customRectangleBorderColor = customCircleBorderColor
+        self.customRectangleBorderColor = customRectangleBorderColor
         self.customRectangleCornerRadius = customRectangleCornerRadius
         self.customSquareSide = customSquareSide
     }
