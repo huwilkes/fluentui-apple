@@ -214,32 +214,41 @@ public struct ButtonsDivider: View, ConfigurableTokenizedControl {
          a bunch of copied code for setting the theme and other properties of
          the control's tokens.
          */
-//        let leadingButtonTokens = fluentTheme.tokens(for: leadingButton) ?? .init()
-//        leadingButtonTokens.fluentTheme = fluentTheme
-//        leadingButtonTokens.style = leadingButtonStyle
-//        leadingButtonTokens.size = leadingButtonSize
-//        tokens.leadingButtonTokens = leadingButtonTokens
+        let leadingButtonTokens = fluentTheme.tokens(for: leadingButton) ?? .init()
+        leadingButtonTokens.fluentTheme = fluentTheme
+        leadingButtonTokens.style = leadingButtonStyle
+        leadingButtonTokens.size = leadingButtonSize
+        tokens.leadingButtonTokens = leadingButtonTokens
 
         /**
          Probably the best option - Uses the button to properly configure the
          tokens while not risking a long recursive list of override tokens
          */
-        leadingButton.state.overrideTokens = nil
-        tokens.leadingButtonTokens = leadingButton.tokens
+//        leadingButton.state.overrideTokens = nil
+//        tokens.leadingButtonTokens = leadingButton.tokens
 
         @ViewBuilder
         var divider: FluentDivider {
             FluentDivider(orientation: .vertical, spacing: .medium)
         }
-        divider.state.overrideTokens = nil
-        tokens.dividerTokens = divider.tokens
+//        divider.state.overrideTokens = nil
+//        tokens.dividerTokens = divider.tokens
+        let dividerTokens = fluentTheme.tokens(for: divider) ?? .init()
+        dividerTokens.fluentTheme = fluentTheme
+        dividerTokens.spacing = .medium
+        tokens.dividerTokens = dividerTokens
 
         @ViewBuilder
         var trailingButton: FluentButton {
             FluentButton(style: leadingButtonStyle, size: leadingButtonSize, text: "Secondary", action: {})
         }
-        trailingButton.state.overrideTokens = nil
-        let trailingButtonTokens = trailingButton.tokens
+//        trailingButton.state.overrideTokens = nil
+//        let trailingButtonTokens = trailingButton.tokens
+//        trailingButtonTokens.style = trailingButtonStyle
+//        trailingButtonTokens.size = trailingButtonSize
+//        tokens.trailingButtonTokens = trailingButtonTokens
+        let trailingButtonTokens = fluentTheme.tokens(for: trailingButton) ?? .init()
+        trailingButtonTokens.fluentTheme = fluentTheme
         trailingButtonTokens.style = trailingButtonStyle
         trailingButtonTokens.size = trailingButtonSize
         tokens.trailingButtonTokens = trailingButtonTokens
