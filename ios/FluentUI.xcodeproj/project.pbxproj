@@ -218,6 +218,7 @@
 		EC27B875282312EF00A40B9A /* SquareGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B874282312EF00A40B9A /* SquareGroup.swift */; };
 		EC27B87B2823392D00A40B9A /* SplitSquareGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87A2823392D00A40B9A /* SplitSquareGroup.swift */; };
 		EC27B8812825B16C00A40B9A /* ButtonsDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8802825B16C00A40B9A /* ButtonsDivider.swift */; };
+		EC27B8872829BBD200A40B9A /* ButtonsDividerPublicOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8862829BBD200A40B9A /* ButtonsDividerPublicOverride.swift */; };
 		EC5982D827BF348700FD048D /* MSFAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5982D727BF348700FD048D /* MSFAvatar.swift */; };
 		EC5982DA27C703EE00FD048D /* CircleCutout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5982D927C703ED00FD048D /* CircleCutout.swift */; };
 		EC5982DC27CEC02100FD048D /* DrawerTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5982DB27CEC02100FD048D /* DrawerTokens.swift */; };
@@ -411,6 +412,7 @@
 		EC27B874282312EF00A40B9A /* SquareGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareGroup.swift; sourceTree = "<group>"; };
 		EC27B87A2823392D00A40B9A /* SplitSquareGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSquareGroup.swift; sourceTree = "<group>"; };
 		EC27B8802825B16C00A40B9A /* ButtonsDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDivider.swift; sourceTree = "<group>"; };
+		EC27B8862829BBD200A40B9A /* ButtonsDividerPublicOverride.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDividerPublicOverride.swift; sourceTree = "<group>"; };
 		EC5982D727BF348700FD048D /* MSFAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSFAvatar.swift; sourceTree = "<group>"; };
 		EC5982D927C703ED00FD048D /* CircleCutout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleCutout.swift; sourceTree = "<group>"; };
 		EC5982DB27CEC02100FD048D /* DrawerTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawerTokens.swift; sourceTree = "<group>"; };
@@ -1161,6 +1163,7 @@
 				EC27B874282312EF00A40B9A /* SquareGroup.swift */,
 				EC27B87A2823392D00A40B9A /* SplitSquareGroup.swift */,
 				EC27B8802825B16C00A40B9A /* ButtonsDivider.swift */,
+				EC27B8862829BBD200A40B9A /* ButtonsDividerPublicOverride.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -1668,6 +1671,7 @@
 				EC27B8812825B16C00A40B9A /* ButtonsDivider.swift in Sources */,
 				5314E07125F00F140099271A /* DatePickerSelectionManager.swift in Sources */,
 				5373D5672694D65C0032A3B4 /* Avatar.swift in Sources */,
+				EC27B8872829BBD200A40B9A /* ButtonsDividerPublicOverride.swift in Sources */,
 				5314E1A425F01A7C0099271A /* CenteredLabelCell.swift in Sources */,
 				5314E1A125F01A7C0099271A /* TableViewCellFileAccessoryView.swift in Sources */,
 				5314E1D625F01E4A0099271A /* SearchBar.swift in Sources */,

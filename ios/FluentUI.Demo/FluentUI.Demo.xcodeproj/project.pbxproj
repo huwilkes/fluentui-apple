@@ -83,6 +83,8 @@
 		EC27B87F28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B87E28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift */; };
 		EC27B8832825BEB300A40B9A /* ButtonsDividerDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8822825BEB300A40B9A /* ButtonsDividerDemoController.swift */; };
 		EC27B8852825C1AF00A40B9A /* ButtonsDividerDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8842825C1AF00A40B9A /* ButtonsDividerDemoController_SwiftUI.swift */; };
+		EC27B8892829BE4500A40B9A /* ButtonsDividerPublicOverrideDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B8882829BE4500A40B9A /* ButtonsDividerPublicOverrideDemoController.swift */; };
+		EC27B88B2829BE8F00A40B9A /* ButtondDividerPublicOverrideDemoController_SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27B88A2829BE8F00A40B9A /* ButtondDividerPublicOverrideDemoController_SwiftUI.swift */; };
 		EC6A71EC273DE6DF0076A586 /* DividerDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A71EB273DE6DF0076A586 /* DividerDemoController.swift */; };
 		ECCABFB227DFFA070037C70C /* ColoredPillBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCABFB127DFFA070037C70C /* ColoredPillBackgroundView.swift */; };
 		FC414E3725888BC300069E73 /* CommandBarDemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC414E3625888BC300069E73 /* CommandBarDemoController.swift */; };
@@ -162,6 +164,8 @@
 		EC27B87E28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitSquareGroupDemoController_SwiftUI.swift; sourceTree = "<group>"; };
 		EC27B8822825BEB300A40B9A /* ButtonsDividerDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDividerDemoController.swift; sourceTree = "<group>"; };
 		EC27B8842825C1AF00A40B9A /* ButtonsDividerDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDividerDemoController_SwiftUI.swift; sourceTree = "<group>"; };
+		EC27B8882829BE4500A40B9A /* ButtonsDividerPublicOverrideDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDividerPublicOverrideDemoController.swift; sourceTree = "<group>"; };
+		EC27B88A2829BE8F00A40B9A /* ButtondDividerPublicOverrideDemoController_SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtondDividerPublicOverrideDemoController_SwiftUI.swift; sourceTree = "<group>"; };
 		EC6A71EB273DE6DF0076A586 /* DividerDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerDemoController.swift; sourceTree = "<group>"; };
 		EC8EA6AF2580D82A00F191CE /* ListDemoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDemoController.swift; sourceTree = "<group>"; };
 		ECCABFB127DFFA070037C70C /* ColoredPillBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPillBackgroundView.swift; sourceTree = "<group>"; };
@@ -386,6 +390,8 @@
 				EC27B87E28233B6700A40B9A /* SplitSquareGroupDemoController_SwiftUI.swift */,
 				EC27B8822825BEB300A40B9A /* ButtonsDividerDemoController.swift */,
 				EC27B8842825C1AF00A40B9A /* ButtonsDividerDemoController_SwiftUI.swift */,
+				EC27B8882829BE4500A40B9A /* ButtonsDividerPublicOverrideDemoController.swift */,
+				EC27B88A2829BE8F00A40B9A /* ButtondDividerPublicOverrideDemoController_SwiftUI.swift */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -526,6 +532,7 @@
 				53097D3F27028AE100A6E4DC /* ObjectiveCDemoController.m in Sources */,
 				532FE3DB26EA6D8D007539C0 /* ActivityIndicatorDemoController.swift in Sources */,
 				B441478F228E02540040E88E /* OtherCellsDemoController.swift in Sources */,
+				EC27B8892829BE4500A40B9A /* ButtonsDividerPublicOverrideDemoController.swift in Sources */,
 				5303259326B3198A00611D05 /* AvatarDemoController_SwiftUI.swift in Sources */,
 				92D5598426A1523400328FD3 /* CardNudgeDemoController.swift in Sources */,
 				5303259826B31A6300611D05 /* FluentUIDemoToggle.swift in Sources */,
@@ -587,6 +594,7 @@
 				53097D4427028AFA00A6E4DC /* TooltipDemoController.swift in Sources */,
 				A589F856211BA71000471C23 /* LabelDemoController.swift in Sources */,
 				E6842996247C350700A29C40 /* DemoColorThemes.swift in Sources */,
+				EC27B88B2829BE8F00A40B9A /* ButtondDividerPublicOverrideDemoController_SwiftUI.swift in Sources */,
 				A5CEC21020E436F10016922A /* AppDelegate.swift in Sources */,
 				53097D4227028AF000A6E4DC /* TabBarViewDemoController.swift in Sources */,
 				EC6A71EC273DE6DF0076A586 /* DividerDemoController.swift in Sources */,
