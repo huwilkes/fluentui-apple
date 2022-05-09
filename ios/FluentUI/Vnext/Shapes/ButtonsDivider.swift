@@ -18,6 +18,22 @@ open class ButtonsDividerTokens: ControlTokens {
     var leadingButtonTokens: ButtonTokens = .init()
     var trailingButtonTokens: ButtonTokens = .init()
     var dividerTokens: DividerTokens = .init()
+    
+    open var leadingButtonTextColor: ButtonDynamicColors {
+        leadingButtonTokens.textColor
+    }
+
+    open var leadingButtonBackgroundColor: ButtonDynamicColors {
+        leadingButtonTokens.backgroundColor
+    }
+    
+    open var trailingButtonTextColor: ButtonDynamicColors {
+        trailingButtonTokens.textColor
+    }
+
+    open var trailingButtonBorderColor: ButtonDynamicColors {
+        trailingButtonTokens.borderColor
+    }
 }
 
 private class CustomLeadingButtonTokens: ButtonTokens {
@@ -61,7 +77,7 @@ private class CustomLeadingButtonTokens: ButtonTokens {
     }
 
     open override var textColor: ButtonDynamicColors {
-        buttonsDividerTokens.leadingButtonTokens.textColor
+        buttonsDividerTokens.leadingButtonTextColor
     }
 
     open override var borderColor: ButtonDynamicColors {
@@ -69,7 +85,7 @@ private class CustomLeadingButtonTokens: ButtonTokens {
     }
 
     open override var backgroundColor: ButtonDynamicColors {
-        buttonsDividerTokens.leadingButtonTokens.backgroundColor
+        buttonsDividerTokens.leadingButtonBackgroundColor
     }
 
     open override var iconColor: ButtonDynamicColors {
@@ -134,11 +150,11 @@ private class CustomTrailingButtonTokens: ButtonTokens {
     }
 
     open override var textColor: ButtonDynamicColors {
-        buttonsDividerTokens.trailingButtonTokens.textColor
+        buttonsDividerTokens.trailingButtonTextColor
     }
 
     open override var borderColor: ButtonDynamicColors {
-        buttonsDividerTokens.trailingButtonTokens.borderColor
+        buttonsDividerTokens.trailingButtonBorderColor
     }
 
     open override var backgroundColor: ButtonDynamicColors {

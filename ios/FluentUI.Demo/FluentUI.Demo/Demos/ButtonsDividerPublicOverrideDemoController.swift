@@ -56,6 +56,9 @@ class ButtonsDividerPublicOverrideDemoController: DemoTableViewController {
 
             let buttonsDividerPublicOverride = MSFButtonsDividerPublicOverride()
             if useOverrideTokens {
+                let state = buttonsDividerPublicOverride.state
+                state.leadingButtonOverrideTokens = LeadingButtonOverrideTokens()
+                state.trailingButtonOverrideTokens = TraillingButtonOverrideTokens()
             }
 
             verticalStack.addArrangedSubview(buttonsDividerPublicOverride)
@@ -142,6 +145,42 @@ class ButtonsDividerPublicOverrideDemoController: DemoTableViewController {
             case .controlDemo:
                 return ""
             }
+        }
+    }
+
+    private class LeadingButtonOverrideTokens: ButtonTokens {
+        override var textColor: ButtonDynamicColors {
+            return .init(rest: DynamicColor(light: globalTokens.neutralColors[.white]),
+                         hover: DynamicColor(light: globalTokens.neutralColors[.white]),
+                         pressed: DynamicColor(light: globalTokens.neutralColors[.white]),
+                         selected: DynamicColor(light: globalTokens.neutralColors[.white]),
+                         disabled: DynamicColor(light: globalTokens.neutralColors[.white]))
+        }
+
+        override var backgroundColor: ButtonDynamicColors {
+            return .init(rest: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         hover: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         pressed: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         selected: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         disabled: DynamicColor(light: globalTokens.neutralColors[.black]))
+        }
+    }
+
+    private class TraillingButtonOverrideTokens: ButtonTokens {
+        override var textColor: ButtonDynamicColors {
+            return .init(rest: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         hover: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         pressed: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         selected: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         disabled: DynamicColor(light: globalTokens.neutralColors[.black]))
+        }
+
+        override var borderColor: ButtonDynamicColors {
+            return .init(rest: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         hover: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         pressed: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         selected: DynamicColor(light: globalTokens.neutralColors[.black]),
+                         disabled: DynamicColor(light: globalTokens.neutralColors[.black]))
         }
     }
 }
