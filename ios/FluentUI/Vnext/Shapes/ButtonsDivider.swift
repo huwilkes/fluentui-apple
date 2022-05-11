@@ -18,7 +18,7 @@ open class ButtonsDividerTokens: ControlTokens {
     var leadingButtonTokens: ButtonTokens = .init()
     var trailingButtonTokens: ButtonTokens = .init()
     var dividerTokens: DividerTokens = .init()
-    
+
     open var leadingButtonTextColor: ButtonDynamicColors {
         leadingButtonTokens.textColor
     }
@@ -26,7 +26,7 @@ open class ButtonsDividerTokens: ControlTokens {
     open var leadingButtonBackgroundColor: ButtonDynamicColors {
         leadingButtonTokens.backgroundColor
     }
-    
+
     open var trailingButtonTextColor: ButtonDynamicColors {
         trailingButtonTokens.textColor
     }
@@ -43,6 +43,33 @@ private class CustomLeadingButtonTokens: ButtonTokens {
         super.init()
     }
     required init() { }
+
+    override var fluentTheme: FluentTheme {
+        get {
+            buttonsDividerTokens.leadingButtonTokens.fluentTheme
+        }
+        set {
+            buttonsDividerTokens.leadingButtonTokens.fluentTheme = newValue
+        }
+    }
+
+    override var style: MSFButtonStyle {
+        get {
+            buttonsDividerTokens.leadingButtonTokens.style
+        }
+        set {
+            buttonsDividerTokens.leadingButtonTokens.style = newValue
+        }
+    }
+
+    override var size: MSFButtonSize {
+        get {
+            buttonsDividerTokens.leadingButtonTokens.size
+        }
+        set {
+            buttonsDividerTokens.leadingButtonTokens.size = newValue
+        }
+    }
 
     open override var borderRadius: CGFloat {
         buttonsDividerTokens.leadingButtonTokens.borderRadius
@@ -116,6 +143,33 @@ private class CustomTrailingButtonTokens: ButtonTokens {
         super.init()
     }
     required init() { }
+
+    override var fluentTheme: FluentTheme {
+        get {
+            buttonsDividerTokens.trailingButtonTokens.fluentTheme
+        }
+        set {
+            buttonsDividerTokens.trailingButtonTokens.fluentTheme = newValue
+        }
+    }
+
+    override var style: MSFButtonStyle {
+        get {
+            buttonsDividerTokens.trailingButtonTokens.style
+        }
+        set {
+            buttonsDividerTokens.trailingButtonTokens.style = newValue
+        }
+    }
+
+    override var size: MSFButtonSize {
+        get {
+            buttonsDividerTokens.trailingButtonTokens.size
+        }
+        set {
+            buttonsDividerTokens.trailingButtonTokens.size = newValue
+        }
+    }
 
     open override var borderRadius: CGFloat {
         buttonsDividerTokens.trailingButtonTokens.borderRadius
@@ -230,18 +284,18 @@ public struct ButtonsDivider: View, ConfigurableTokenizedControl {
          a bunch of copied code for setting the theme and other properties of
          the control's tokens.
          */
-        let leadingButtonTokens = fluentTheme.tokens(for: leadingButton) ?? .init()
-        leadingButtonTokens.fluentTheme = fluentTheme
-        leadingButtonTokens.style = leadingButtonStyle
-        leadingButtonTokens.size = leadingButtonSize
-        tokens.leadingButtonTokens = leadingButtonTokens
+//        let leadingButtonTokens = fluentTheme.tokens(for: leadingButton) ?? .init()
+//        leadingButtonTokens.fluentTheme = fluentTheme
+//        leadingButtonTokens.style = leadingButtonStyle
+//        leadingButtonTokens.size = leadingButtonSize
+//        tokens.leadingButtonTokens = leadingButtonTokens
 
         /**
          Probably the best option - Uses the button to properly configure the
          tokens while not risking a long recursive list of override tokens
          */
-//        leadingButton.state.overrideTokens = nil
-//        tokens.leadingButtonTokens = leadingButton.tokens
+        leadingButton.state.overrideTokens = nil
+        tokens.leadingButtonTokens = leadingButton.tokens
 
         @ViewBuilder
         var divider: FluentDivider {
@@ -256,22 +310,24 @@ public struct ButtonsDivider: View, ConfigurableTokenizedControl {
 
         @ViewBuilder
         var trailingButton: FluentButton {
-            FluentButton(style: leadingButtonStyle, size: leadingButtonSize, text: "Secondary", action: {})
+            FluentButton(style: trailingButtonStyle, size: trailingButtonSize, text: "Secondary", action: {})
         }
-//        trailingButton.state.overrideTokens = nil
-//        let trailingButtonTokens = trailingButton.tokens
+        trailingButton.state.overrideTokens = nil
+        let trailingButtonTokens = trailingButton.tokens
+//        trailingButtonTokens.style = trailingButtonStyle
+//        trailingButtonTokens.size = trailingButtonSize
+        tokens.trailingButtonTokens = trailingButtonTokens
+//        let trailingButtonTokens = fluentTheme.tokens(for: trailingButton) ?? .init()
+//        trailingButtonTokens.fluentTheme = fluentTheme
 //        trailingButtonTokens.style = trailingButtonStyle
 //        trailingButtonTokens.size = trailingButtonSize
 //        tokens.trailingButtonTokens = trailingButtonTokens
-        let trailingButtonTokens = fluentTheme.tokens(for: trailingButton) ?? .init()
-        trailingButtonTokens.fluentTheme = fluentTheme
-        trailingButtonTokens.style = trailingButtonStyle
-        trailingButtonTokens.size = trailingButtonSize
-        tokens.trailingButtonTokens = trailingButtonTokens
+        let customLeadingTokens = CustomLeadingButtonTokens(buttonsDividerTokens: tokens)
+        customLeadingTokens.fluentTheme = fluentTheme
 
         return HStack (spacing: 0) {
             leadingButton
-                .overrideTokens(CustomLeadingButtonTokens(buttonsDividerTokens: tokens))
+                .overrideTokens(customLeadingTokens)
                 .fixedSize()
             divider
                 .overrideTokens(CustomDividerTokens(buttonsDividerTokens: tokens))
