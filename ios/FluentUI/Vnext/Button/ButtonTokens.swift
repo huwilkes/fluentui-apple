@@ -317,3 +317,37 @@ open class ButtonTokens: ControlTokens {
         }
     }
 }
+
+public class CustomButtonTokens: NSObject {
+    public var borderRadius: CGFloat?
+
+    public var borderSize: CGFloat?
+
+    public var iconSize: CGFloat?
+
+    public var interspace: CGFloat?
+
+    public var horizontalPadding: CGFloat?
+
+    public var textFont: FontInfo?
+
+    public var textMinimumHeight: CGFloat?
+
+    public var textAdditionalHorizontalPadding: CGFloat?
+
+    public var textColor: ButtonDynamicColors?
+
+    public var borderColor: ButtonDynamicColors?
+
+    public var backgroundColor: ButtonDynamicColors?
+
+    public var iconColor: ButtonDynamicColors?
+
+    public var restShadow: ShadowInfo?
+
+    public var pressedShadow: ShadowInfo?
+
+    public var minHeight: CGFloat?
+
+    public var minVerticalPadding: CGFloat?
+}
