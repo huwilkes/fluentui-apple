@@ -3,451 +3,219 @@
 //  Licensed under the MIT License.
 //
 
+import SwiftUI
 import UIKit
 
-// MARK: ButtonStyle
+/// Properties that can be used to customize the appearance of the Button.
+@objc public protocol MSFButtonState {
 
-@objc(MSFButtonStyle)
-public enum ButtonStyle: Int, CaseIterable {
-    case primaryFilled
-    case primaryOutline
-    case dangerFilled
-    case dangerOutline
-    case secondaryOutline
-    case tertiaryOutline
-    case borderless
+    /// The string representing the accessibility label of the button.
+    var accessibilityLabel: String? { get set }
 
-    public var contentEdgeInsets: UIEdgeInsets {
-        switch self {
-        case .dangerFilled, .dangerOutline, .primaryFilled, .primaryOutline:
-            return UIEdgeInsets(top: 16, left: 20, bottom: 16, right: 20)
-        case .secondaryOutline:
-            return UIEdgeInsets(top: 10, left: 14, bottom: 10, right: 14)
-        case .borderless:
-            return UIEdgeInsets(top: 7, left: 12, bottom: 7, right: 12)
-        case .tertiaryOutline:
-            return UIEdgeInsets(top: 5, left: 8, bottom: 5, right: 8)
-        }
+    /// Defines the icon image of the button.
+    var image: UIImage? { get set }
+
+    /// Controls whether the button is available for user interaction, renders the control accordingly.
+    var isDisabled: Bool { get set }
+
+    /// Text used as the label of the button.
+    var text: String? { get set }
+
+    /// Defines the size of the button.
+    var size: MSFButtonSize { get set }
+
+    /// Defines the style of the button.
+    var style: MSFButtonStyle { get set }
+}
+
+/// View that represents the button.
+public struct FluentButton: View, TokenizedControlView {
+    public typealias TokenSetKeyType = ButtonTokenSet.Tokens
+    @ObservedObject public var tokenSet: ButtonTokenSet
+
+    @Environment(\.fluentTheme) var fluentTheme: FluentTheme
+    @ObservedObject var state: MSFButtonStateImpl
+
+    /// Creates a FluentButton.
+    /// - Parameters:
+    ///   - style: The MSFButtonStyle used by the button.
+    ///   - size: The MSFButtonSize value used by the button.
+    ///   - image: The image used as the leading icon of the button.
+    ///   - text: The text used in the button label.
+    ///   - action: Closure that handles the button tap event.
+    public init(style: MSFButtonStyle,
+                size: MSFButtonSize,
+                image: UIImage? = nil,
+                text: String? = nil,
+                action: @escaping () -> Void) {
+        let state = MSFButtonStateImpl(style: style,
+                                       size: size,
+                                       action: action)
+        state.text = text
+        state.image = image
+        self.state = state
+        self.tokenSet = ButtonTokenSet(style: { state.style },
+                                       size: { state.size })
     }
 
-    var cornerRadius: CGFloat {
-        switch self {
-        case .borderless, .dangerFilled, .dangerOutline, .primaryFilled, .primaryOutline, .secondaryOutline:
-            return 8
-        case .tertiaryOutline:
-            return 5
+    public var body: some View {
+        Button(action: state.action) {
+            if let image = state.image {
+                Image(uiImage: image)
+            }
+            if let text = state.text {
+                Text(text)
+            }
         }
-    }
-
-    var hasBorders: Bool {
-        switch self {
-        case .dangerOutline, .primaryOutline, .secondaryOutline, .tertiaryOutline:
-            return true
-        case .borderless, .dangerFilled, .primaryFilled:
-            return false
-        }
-    }
-
-    var isDangerStyle: Bool {
-        switch self {
-        case .dangerFilled, .dangerOutline:
-            return true
-        case .borderless, .primaryFilled, .primaryOutline, .secondaryOutline, .tertiaryOutline:
-            return false
-        }
-    }
-
-    var isFilledStyle: Bool {
-        switch self {
-        case .dangerFilled, .primaryFilled:
-            return true
-        case .borderless, .dangerOutline, .primaryOutline, .secondaryOutline, .tertiaryOutline:
-            return false
-        }
-    }
-
-    var minTitleLabelHeight: CGFloat {
-        switch self {
-        case .borderless, .dangerFilled, .dangerOutline, .primaryFilled, .primaryOutline:
-            return 20
-        case .secondaryOutline, .tertiaryOutline:
-            return 18
-        }
-    }
-
-    var titleFont: UIFont {
-        switch self {
-        case .borderless, .dangerFilled, .dangerOutline, .primaryFilled, .primaryOutline:
-            return Fonts.button1
-        case .secondaryOutline, .tertiaryOutline:
-            return Fonts.button2
-        }
-    }
-
-    var titleImagePadding: CGFloat {
-        switch self {
-        case .dangerFilled, .dangerOutline, .primaryFilled, .primaryOutline:
-            return 10
-        case .secondaryOutline, .borderless:
-            return 8
-        case .tertiaryOutline:
-            return 0
-        }
+        .buttonStyle(FluentButtonStyle(state: state,
+                                       tokenSet: tokenSet))
+        .disabled(state.disabled ?? false)
+        .frame(maxWidth: .infinity)
+        .modifyIf(state.style.isFloatingStyle, { button in
+            button.showsLargeContentViewer()
+        })
+        .fluentTokens(tokenSet, fluentTheme)
     }
 }
 
-// MARK: - Button Colors
+class MSFButtonStateImpl: ControlState, MSFButtonState {
+    var action: () -> Void
+    @Published var image: UIImage?
+    @Published var disabled: Bool?
+    @Published var isFocused: Bool = false
+    @Published var text: String?
+    @Published var size: MSFButtonSize
+    @Published var style: MSFButtonStyle
 
-public extension Colors {
-    struct Button {
-        public static var background: UIColor = .clear
-        public static var backgroundFilledDisabled: UIColor = surfaceQuaternary
-        public static var borderDisabled: UIColor = surfaceQuaternary
-        public static var titleDisabled: UIColor = textDisabled
-        public static var titleWithFilledBackground: UIColor = textOnAccent
-    }
-}
-
-// MARK: - Button
-
-/// By default, `titleLabel`'s `adjustsFontForContentSizeCategory` is set to true to automatically update its font when device's content size category changes
-@IBDesignable
-@objc(MSFButton)
-open class Button: UIButton {
-    private struct Constants {
-        static let borderWidth: CGFloat = 1
-    }
-
-    @objc open var style: ButtonStyle = .secondaryOutline {
-        didSet {
-            if style != oldValue {
-                update()
-            }
+    var isDisabled: Bool {
+        get {
+            return disabled ?? false
+        }
+        set {
+            disabled = newValue
         }
     }
 
-    /// The button's image.
-    /// For ButtonStyle.primaryFilled and ButtonStyle.primaryOutline, the image must be 24x24.
-    /// For ButtonStyle.secondaryOutline and ButtonStyle.borderless, the image must be 20x20.
-    /// For other styles, the image is not displayed.
-    @objc open var image: UIImage? {
-        didSet {
-            update()
-        }
-    }
-
-    open override var isHighlighted: Bool {
-        didSet {
-            if isHighlighted != oldValue {
-                update()
-            }
-        }
-    }
-
-    open override var isEnabled: Bool {
-        didSet {
-            if isEnabled != oldValue {
-                update()
-            }
-        }
-    }
-
-    open override var contentEdgeInsets: UIEdgeInsets {
-        didSet {
-            isUsingCustomContentEdgeInsets = true
-
-            updateProposedTitleLabelWidth()
-
-            if !isAdjustingCustomContentEdgeInsetsForImage && image(for: .normal) != nil {
-                adjustCustomContentEdgeInsetsForImage()
-            }
-        }
-    }
-
-    open override var intrinsicContentSize: CGSize {
-        var size = titleLabel?.systemLayoutSizeFitting(CGSize(width: proposedTitleLabelWidth == 0 ? .greatestFiniteMagnitude : proposedTitleLabelWidth, height: .greatestFiniteMagnitude)) ?? .zero
-        size.width = ceil(size.width + contentEdgeInsets.left + contentEdgeInsets.right)
-        size.height = ceil(max(size.height, style.minTitleLabelHeight) + contentEdgeInsets.top + contentEdgeInsets.bottom)
-
-        if let image = image(for: .normal) {
-            size.width += image.size.width
-
-            if titleLabel?.text?.count ?? 0 == 0 {
-                size.width -= style.titleImagePadding
-            }
-        }
-
-        return size
-    }
-
-    open override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
-        var rect = super.imageRect(forContentRect: contentRect)
-
-        if let image = image {
-            let imageHeight = image.size.height
-
-            // If the entire image doesn't fit in the default rect, increase the rect's height
-            // to fit the entire image and reposition the origin to keep the image centered.
-            if imageHeight > rect.size.height {
-                rect.origin.y -= round((imageHeight - rect.size.height) / 2.0)
-                rect.size.height = imageHeight
-            }
-
-            rect.size.width = image.size.width
-        }
-
-        return rect
-    }
-
-    @objc public init(style: ButtonStyle = .secondaryOutline) {
+    init(style: MSFButtonStyle,
+         size: MSFButtonSize,
+         action: @escaping () -> Void) {
+        self.size = size
         self.style = style
-        super.init(frame: .zero)
-        initialize()
+        self.action = action
+
+        super.init()
+    }
+}
+
+/// ButtonStyle which configures the Button View according to its state and design tokens.
+struct FluentButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) var isEnabled: Bool
+    @ObservedObject var state: MSFButtonStateImpl
+    @ObservedObject var tokenSet: ButtonTokenSet
+    @State var isPressed: Bool = false
+
+    func makeBody(configuration: Self.Configuration) -> some View {
+        isPressed = configuration.isPressed
+        return body
     }
 
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        initialize()
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initialize()
-    }
-
-    open func initialize() {
-        layer.cornerRadius = style.cornerRadius
-        layer.cornerCurve = .continuous
-
-        titleLabel?.font = style.titleFont
-        titleLabel?.adjustsFontForContentSizeCategory = true
-        update()
-    }
-
-    open override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        guard style.isFilledStyle, (self == context.nextFocusedView || self == context.previouslyFocusedView) else {
-            return
+    var body: some View {
+        let isDisabled = !isEnabled
+        let isFocused = state.isFocused
+        let isFloatingStyle = state.style.isFloatingStyle
+        let shouldUsePressedShadow = isDisabled || isPressed
+        let verticalPadding = tokenSet[.minVerticalPadding].float
+        let horizontalPadding = tokenSet[.horizontalPadding].float
+        let iconColor: DynamicColor
+        let textColor: DynamicColor
+        let borderColor: DynamicColor
+        let backgroundColor: DynamicColor
+        if isDisabled {
+            iconColor = tokenSet[.iconColor].buttonDynamicColors.disabled
+            textColor = tokenSet[.textColor].buttonDynamicColors.disabled
+            borderColor = tokenSet[.borderColor].buttonDynamicColors.disabled
+            backgroundColor = tokenSet[.backgroundColor].buttonDynamicColors.disabled
+        } else if isPressed || isFocused {
+            iconColor = tokenSet[.iconColor].buttonDynamicColors.pressed
+            textColor = tokenSet[.textColor].buttonDynamicColors.pressed
+            borderColor = tokenSet[.borderColor].buttonDynamicColors.pressed
+            backgroundColor = tokenSet[.backgroundColor].buttonDynamicColors.pressed
+        } else {
+            iconColor = tokenSet[.iconColor].buttonDynamicColors.rest
+            textColor = tokenSet[.textColor].buttonDynamicColors.rest
+            borderColor = tokenSet[.borderColor].buttonDynamicColors.rest
+            backgroundColor = tokenSet[.backgroundColor].buttonDynamicColors.rest
         }
 
-        updateBackgroundColor()
-    }
-
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-
-        if previousTraitCollection?.userInterfaceStyle != traitCollection.userInterfaceStyle {
-            updateBorderColor()
-        }
-    }
-
-    open override func didMoveToWindow() {
-        super.didMoveToWindow()
-        updateBackgroundColor()
-        updateTitleColors()
-        updateImage()
-        updateBorderColor()
-    }
-
-    open override func layoutSubviews() {
-        super.layoutSubviews()
-
-        updateProposedTitleLabelWidth()
-    }
-
-    private func updateTitleColors() {
-        if let window = window {
-            setTitleColor(normalTitleAndImageColor(for: window), for: .normal)
-            setTitleColor(highlightedTitleAndImageColor(for: window), for: .highlighted)
-            setTitleColor(disabledTitleAndImageColor(for: window), for: .disabled)
-        }
-    }
-
-    private func updateImage() {
-        let isDisplayingImage = style != .tertiaryOutline && image != nil
-
-        if let window = window {
-            let normalColor = normalTitleAndImageColor(for: window)
-            let highlightedColor = highlightedTitleAndImageColor(for: window)
-            let disabledColor = disabledTitleAndImageColor(for: window)
-            let needsSetImage = isDisplayingImage && image(for: .normal) == nil
-
-            if needsSetImage || !normalColor.isEqual(normalImageTintColor) {
-                normalImageTintColor = normalColor
-                setImage(image?.withTintColor(normalColor, renderingMode: .alwaysOriginal), for: .normal)
-            }
-
-            if needsSetImage || !highlightedColor.isEqual(highlightedImageTintColor) {
-                highlightedImageTintColor = highlightedColor
-                setImage(image?.withTintColor(highlightedColor, renderingMode: .alwaysOriginal), for: .highlighted)
-            }
-
-            if needsSetImage || !disabledColor.isEqual(disabledImageTintColor) {
-                disabledImageTintColor = disabledColor
-                setImage(image?.withTintColor(disabledColor, renderingMode: .alwaysOriginal), for: .disabled)
-            }
-
-            if needsSetImage {
-                updateProposedTitleLabelWidth()
-
-                if isUsingCustomContentEdgeInsets {
-                    adjustCustomContentEdgeInsetsForImage()
+        @ViewBuilder
+        var buttonContent: some View {
+            HStack(spacing: tokenSet[.interspace].float) {
+                if let image = state.image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .foregroundColor(Color(dynamicColor: iconColor))
+                        .frame(width: tokenSet[.iconSize].float, height: tokenSet[.iconSize].float, alignment: .center)
+                }
+                if let text = state.text {
+                    Text(text)
+                        .multilineTextAlignment(.center)
+                        .font(.fluent(tokenSet[.textFont].fontInfo, shouldScale: !isFloatingStyle))
+                        .modifyIf(isFloatingStyle, { view in
+                            view.frame(minHeight: tokenSet[.textMinimumHeight].float)
+                        })
                 }
             }
+            .padding(EdgeInsets(top: verticalPadding,
+                                leading: horizontalPadding,
+                                bottom: verticalPadding,
+                                trailing: horizontalPadding))
+            .modifyIf(isFloatingStyle && !(state.text?.isEmpty ?? true), { view in
+                view.padding(.horizontal, tokenSet[.textAdditionalHorizontalPadding].float )
+            })
+            .frame(maxWidth: .infinity, minHeight: tokenSet[.minHeight].float, maxHeight: .infinity)
+            .foregroundColor(Color(dynamicColor: textColor))
         }
 
-        if (image == nil || !isDisplayingImage) && image(for: .normal) != nil {
-            setImage(nil, for: .normal)
-            setImage(nil, for: .highlighted)
-            setImage(nil, for: .disabled)
-
-            normalImageTintColor = nil
-            highlightedImageTintColor = nil
-            disabledImageTintColor = nil
-
-            updateProposedTitleLabelWidth()
-
-            if isUsingCustomContentEdgeInsets {
-                adjustCustomContentEdgeInsetsForImage()
-            }
-        }
-    }
-
-    private func update() {
-        updateTitleColors()
-        updateImage()
-        updateBackgroundColor()
-        updateBorderColor()
-
-        layer.borderWidth = style.hasBorders ? Constants.borderWidth : 0
-
-        if !isUsingCustomContentEdgeInsets {
-            contentEdgeInsets = style.contentEdgeInsets
-        }
-
-        updateProposedTitleLabelWidth()
-    }
-
-    private func normalTitleAndImageColor(for window: UIWindow) -> UIColor {
-        if style.isFilledStyle {
-            return Colors.Button.titleWithFilledBackground
-        }
-
-        return style.isDangerStyle ? Colors.Palette.dangerPrimary.color : Colors.primary(for: window)
-    }
-
-    private func highlightedTitleAndImageColor(for window: UIWindow) -> UIColor {
-        if style.isFilledStyle {
-            return Colors.Button.titleWithFilledBackground
-        }
-
-        return style.isDangerStyle ? Colors.Palette.dangerTint20.color : Colors.primaryTint20(for: window)
-    }
-
-    private func disabledTitleAndImageColor(for window: UIWindow) -> UIColor {
-        return style.isFilledStyle ? Colors.Button.titleWithFilledBackground : Colors.Button.titleDisabled
-    }
-
-    private var normalImageTintColor: UIColor?
-    private var highlightedImageTintColor: UIColor?
-    private var disabledImageTintColor: UIColor?
-
-    private var isUsingCustomContentEdgeInsets: Bool = false
-    private var isAdjustingCustomContentEdgeInsetsForImage: Bool = false
-
-    /// if value is 0.0, CGFloat.greatestFiniteMagnitude is used to calculate the width of the `titleLabel` in `intrinsicContentSize`
-    private var proposedTitleLabelWidth: CGFloat = 0.0 {
-        didSet {
-            if proposedTitleLabelWidth != oldValue {
-                invalidateIntrinsicContentSize()
-            }
-        }
-    }
-
-    private func updateProposedTitleLabelWidth() {
-        if bounds.width > 0.0 {
-            var labelWidth = bounds.width - (contentEdgeInsets.left + contentEdgeInsets.right)
-            if let image = image(for: .normal) {
-                labelWidth -= image.size.width
-            }
-
-            if labelWidth > 0.0 {
-                proposedTitleLabelWidth = labelWidth
-            }
-        }
-    }
-
-    private func adjustCustomContentEdgeInsetsForImage() {
-        isAdjustingCustomContentEdgeInsetsForImage = true
-
-        var spacing = style.titleImagePadding
-
-        if image(for: .normal) == nil {
-            spacing = -spacing
-        }
-
-        if effectiveUserInterfaceLayoutDirection == .leftToRight {
-            contentEdgeInsets.right += spacing
-            titleEdgeInsets.left += spacing
-            titleEdgeInsets.right -= spacing
-        } else {
-            contentEdgeInsets.left += spacing
-            titleEdgeInsets.right += spacing
-            titleEdgeInsets.left -= spacing
-        }
-
-        isAdjustingCustomContentEdgeInsetsForImage = false
-    }
-
-    private func updateBackgroundColor() {
-        guard let window = window else {
-            return
-        }
-
-        let backgroundColor: UIColor
-
-        if !isEnabled {
-            backgroundColor = style.isFilledStyle ? Colors.Button.backgroundFilledDisabled : Colors.Button.background
-        } else {
-            switch style {
-            case .primaryFilled:
-                backgroundColor = isHighlighted || isFocused
-                ? UIColor(light: Colors.primaryTint10(for: window),
-                          dark: Colors.primaryTint20(for: window))
-                : Colors.primary(for: window)
-            case .dangerFilled:
-                backgroundColor = isHighlighted || isFocused
-                ? UIColor(light: Colors.Palette.dangerTint10.color,
-                          dark: Colors.Palette.dangerTint20.color)
-                : Colors.Palette.dangerPrimary.color
-            case .primaryOutline,
-                    .dangerOutline,
-                    .secondaryOutline,
-                    .tertiaryOutline,
-                    .borderless:
-                backgroundColor = Colors.Button.background
-            }
-        }
-
-        self.backgroundColor = backgroundColor
-    }
-
-    private func updateBorderColor() {
-        if !style.hasBorders {
-            return
-        }
-
-        if let window = window {
-            let borderColor: UIColor
-
-            if !isEnabled {
-                borderColor = Colors.Button.borderDisabled
-            } else if isHighlighted {
-                borderColor = style.isDangerStyle ? Colors.Palette.dangerTint30.color : Colors.primaryTint30(for: window)
+        @ViewBuilder
+        var buttonBackground: some View {
+            if tokenSet[.borderSize].float > 0 {
+                buttonContent.background(
+                    RoundedRectangle(cornerRadius: tokenSet[.borderRadius].float)
+                        .strokeBorder(lineWidth: tokenSet[.borderSize].float, antialiased: false)
+                        .foregroundColor(Color(dynamicColor: borderColor))
+                        .contentShape(Rectangle()))
             } else {
-                borderColor = style.isDangerStyle ? Colors.Palette.dangerTint10.color : Colors.primaryTint10(for: window)
+                buttonContent.background(
+                    RoundedRectangle(cornerRadius: tokenSet[.borderRadius].float)
+                        .fill(Color(dynamicColor: backgroundColor)))
             }
-
-            layer.borderColor = borderColor.cgColor
         }
+
+        let shadowInfo = shouldUsePressedShadow ? tokenSet[.pressedShadow].shadowInfo : tokenSet[.restShadow].shadowInfo
+
+        @ViewBuilder
+        var button: some View {
+            if isFloatingStyle {
+                buttonBackground
+                    .clipShape(Capsule())
+                    .shadow(color: Color(dynamicColor: shadowInfo.colorOne),
+                            radius: shadowInfo.blurOne,
+                            x: shadowInfo.xOne,
+                            y: shadowInfo.yOne)
+                    .shadow(color: Color(dynamicColor: shadowInfo.colorTwo),
+                            radius: shadowInfo.blurTwo,
+                            x: shadowInfo.xTwo,
+                            y: shadowInfo.yTwo)
+                    .contentShape(Capsule())
+            } else {
+                buttonBackground
+                    .contentShape(RoundedRectangle(cornerRadius: tokenSet[.borderRadius].float))
+            }
+        }
+
+        return button
+            .pointerInteraction(isEnabled)
     }
+
 }
+
