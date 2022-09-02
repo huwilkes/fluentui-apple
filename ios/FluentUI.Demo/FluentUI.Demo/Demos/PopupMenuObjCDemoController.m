@@ -19,23 +19,23 @@
 
 - (void)loadView {
     [super loadView];
-    MSFButton *demoButton = [[MSFButton alloc] initWithStyle:MSFButtonStylePrimaryOutline];
-    [demoButton setTitle:@"Show PopupMenu" forState:UIControlStateNormal];
-    [demoButton addTarget:self action:@selector(showPopupMenu) forControlEvents:UIControlEventTouchUpInside];
-
-    UIStackView *stack = [[UIStackView alloc] initWithArrangedSubviews:@[demoButton]];
-    [stack setAlignment:UIStackViewAlignmentTop];
-    [stack setTranslatesAutoresizingMaskIntoConstraints:NO];
-    UIView *view = [self view];
-    [view addSubview:stack];
-    [view setBackgroundColor:[MSFColors surfacePrimary]];
-    UILayoutGuide *safeArea = [view safeAreaLayoutGuide];
-    [NSLayoutConstraint activateConstraints:@[
-        [[stack topAnchor] constraintEqualToAnchor:[safeArea topAnchor] constant:10],
-        [[stack leadingAnchor] constraintEqualToAnchor:[safeArea leadingAnchor] constant:10],
-        [[stack trailingAnchor] constraintEqualToAnchor:[safeArea trailingAnchor] constant:-10],
-        [[stack bottomAnchor] constraintEqualToAnchor:[safeArea bottomAnchor] constant:10]
-    ]];
+//    MSFButton *demoButton = [[MSFButton alloc] initWithStyle:MSFButtonStylePrimaryOutline];
+//    [demoButton setTitle:@"Show PopupMenu" forState:UIControlStateNormal];
+//    [demoButton addTarget:self action:@selector(showPopupMenu) forControlEvents:UIControlEventTouchUpInside];
+//
+//    UIStackView *stack = [[UIStackView alloc] initWithArrangedSubviews:@[demoButton]];
+//    [stack setAlignment:UIStackViewAlignmentTop];
+//    [stack setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    UIView *view = [self view];
+//    [view addSubview:stack];
+//    [view setBackgroundColor:[MSFColors surfacePrimary]];
+//    UILayoutGuide *safeArea = [view safeAreaLayoutGuide];
+//    [NSLayoutConstraint activateConstraints:@[
+//        [[stack topAnchor] constraintEqualToAnchor:[safeArea topAnchor] constant:10],
+//        [[stack leadingAnchor] constraintEqualToAnchor:[safeArea leadingAnchor] constant:10],
+//        [[stack trailingAnchor] constraintEqualToAnchor:[safeArea trailingAnchor] constant:-10],
+//        [[stack bottomAnchor] constraintEqualToAnchor:[safeArea bottomAnchor] constant:10]
+//    ]];
 }
 
 - (void)showPopupMenu {

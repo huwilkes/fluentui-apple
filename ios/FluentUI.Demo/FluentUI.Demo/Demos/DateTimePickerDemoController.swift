@@ -50,19 +50,19 @@ class DateTimePickerDemoController: DemoController {
         dateLabel.adjustsFontSizeToFitWidth = true
 
         container.addArrangedSubview(dateLabel)
-        container.addArrangedSubview(createButton(title: "Show date picker", action: #selector(presentDatePicker)))
-        container.addArrangedSubview(createButton(title: "Show date time picker", action: #selector(presentDateTimePicker)))
-        container.addArrangedSubview(createButton(title: "Show date range picker (paged)", action: #selector(presentDateRangePicker)))
-        container.addArrangedSubview(createButton(title: "Show date range picker (tabbed)", action: #selector(presentTabbedDateRangePicker)))
-        container.addArrangedSubview(createButton(title: "Show date time range picker", action: #selector(presentDateTimeRangePicker)))
-        container.addArrangedSubview(createButton(title: "Show picker with custom subtitles or tabs", action: #selector(presentCustomSubtitlePicker)))
-        container.addArrangedSubview(createButton(title: "Show picker with left bar-button", action: #selector(presentLeftBarButtonPicker)))
-        container.addArrangedSubview(createButton(title: "Show picker with left and right bar-buttons", action: #selector(presentRightBarButtonPicker)))
+//        container.addArrangedSubview(createButton(title: "Show date picker", action: #selector(presentDatePicker)))
+//        container.addArrangedSubview(createButton(title: "Show date time picker", action: #selector(presentDateTimePicker)))
+//        container.addArrangedSubview(createButton(title: "Show date range picker (paged)", action: #selector(presentDateRangePicker)))
+//        container.addArrangedSubview(createButton(title: "Show date range picker (tabbed)", action: #selector(presentTabbedDateRangePicker)))
+//        container.addArrangedSubview(createButton(title: "Show date time range picker", action: #selector(presentDateTimeRangePicker)))
+//        container.addArrangedSubview(createButton(title: "Show picker with custom subtitles or tabs", action: #selector(presentCustomSubtitlePicker)))
+//        container.addArrangedSubview(createButton(title: "Show picker with left bar-button", action: #selector(presentLeftBarButtonPicker)))
+//        container.addArrangedSubview(createButton(title: "Show picker with left and right bar-buttons", action: #selector(presentRightBarButtonPicker)))
         container.addArrangedSubview(UIView())
         container.addArrangedSubview(createDatePickerTypeUI())
         container.addArrangedSubview(createCustomCalendarConfigurationUI())
         container.addArrangedSubview(createValidationUI())
-        container.addArrangedSubview(createButton(title: "Reset selected dates", action: #selector(resetDates)))
+//        container.addArrangedSubview(createButton(title: "Reset selected dates", action: #selector(resetDates)))
     }
 
     @objc func presentDatePicker() {

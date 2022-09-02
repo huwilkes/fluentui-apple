@@ -246,21 +246,21 @@ class BottomCommandingDemoController: UIViewController {
         present(alert, animated: true)
     }
 
-    private lazy var incrementHeroCommandCountButton: Button = {
-        let button = Button()
-        button.image = UIImage(named: "ic_fluent_add_20_regular")
-        button.accessibilityLabel = "Increment hero command count"
-        button.addTarget(self, action: #selector(incrementHeroCommands), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var decrementHeroCommandCountButton: Button = {
-        let button = Button()
-        button.image = UIImage(named: "ic_fluent_subtract_20_regular")
-        button.accessibilityLabel = "Decrement hero command count"
-        button.addTarget(self, action: #selector(decrementHeroCommands), for: .touchUpInside)
-        return button
-    }()
+//    private lazy var incrementHeroCommandCountButton: Button = {
+//        let button = Button()
+//        button.image = UIImage(named: "ic_fluent_add_20_regular")
+//        button.accessibilityLabel = "Increment hero command count"
+//        button.addTarget(self, action: #selector(incrementHeroCommands), for: .touchUpInside)
+//        return button
+//    }()
+//
+//    private lazy var decrementHeroCommandCountButton: Button = {
+//        let button = Button()
+//        button.image = UIImage(named: "ic_fluent_subtract_20_regular")
+//        button.accessibilityLabel = "Decrement hero command count"
+//        button.addTarget(self, action: #selector(decrementHeroCommands), for: .touchUpInside)
+//        return button
+//    }()
 
     private lazy var customPopoverViewController: UIViewController = {
         let viewController = UIViewController()
@@ -371,8 +371,8 @@ extension BottomCommandingDemoController: UITableViewDataSource {
             }
 
             let stackView = UIStackView(frame: CGRect(x: 0, y: 0, width: 100, height: 40))
-            stackView.addArrangedSubview(decrementHeroCommandCountButton)
-            stackView.addArrangedSubview(incrementHeroCommandCountButton)
+//            stackView.addArrangedSubview(decrementHeroCommandCountButton)
+//            stackView.addArrangedSubview(incrementHeroCommandCountButton)
             stackView.distribution = .fillEqually
             stackView.alignment = .center
             stackView.spacing = 4

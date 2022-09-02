@@ -177,35 +177,35 @@ class CommandBarDemoController: DemoController {
 
         itemCustomizationContainer.addArrangedSubview(UIView()) //Spacer
 
-        let refreshButton = Button(style: .tertiaryOutline)
-        refreshButton.setTitle("Refresh 'Default' Bar", for: .normal)
-        refreshButton.addTarget(self, action: #selector(refreshDefaultBarItems), for: .touchUpInside)
-        itemCustomizationContainer.addArrangedSubview(refreshButton)
-
-        let removeTrailingItemButton = Button(style: .tertiaryOutline)
-        removeTrailingItemButton.setTitle("Remove Trailing Button", for: .normal)
-        removeTrailingItemButton.addTarget(self, action: #selector(removeDefaultTrailingBarItems), for: .touchUpInside)
-        itemCustomizationContainer.addArrangedSubview(removeTrailingItemButton)
-
-        let refreshTrailingItemButton = Button(style: .tertiaryOutline)
-        refreshTrailingItemButton.setTitle("Refresh Trailing Button", for: .normal)
-        refreshTrailingItemButton.addTarget(self, action: #selector(refreshDefaultTrailingBarItems), for: .touchUpInside)
-        itemCustomizationContainer.addArrangedSubview(refreshTrailingItemButton)
-
-        let removeLeadingItemButton = Button(style: .tertiaryOutline)
-        removeLeadingItemButton.setTitle("Remove Leading Button", for: .normal)
-        removeLeadingItemButton.addTarget(self, action: #selector(removeDefaultLeadingBarItems), for: .touchUpInside)
-        itemCustomizationContainer.addArrangedSubview(removeLeadingItemButton)
-
-        let refreshLeadingItemButton = Button(style: .tertiaryOutline)
-        refreshLeadingItemButton.setTitle("Refresh Leading Button", for: .normal)
-        refreshLeadingItemButton.addTarget(self, action: #selector(refreshDefaultLeadingBarItems), for: .touchUpInside)
-        itemCustomizationContainer.addArrangedSubview(refreshLeadingItemButton)
-
-        let resetScrollPositionButton = Button(style: .tertiaryOutline)
-        resetScrollPositionButton.setTitle("Reset Scroll Position", for: .normal)
-        resetScrollPositionButton.addTarget(self, action: #selector(resetScrollPosition), for: .touchUpInside)
-        itemCustomizationContainer.addArrangedSubview(resetScrollPositionButton)
+//        let refreshButton = Button(style: .tertiaryOutline)
+//        refreshButton.setTitle("Refresh 'Default' Bar", for: .normal)
+//        refreshButton.addTarget(self, action: #selector(refreshDefaultBarItems), for: .touchUpInside)
+//        itemCustomizationContainer.addArrangedSubview(refreshButton)
+//
+//        let removeTrailingItemButton = Button(style: .tertiaryOutline)
+//        removeTrailingItemButton.setTitle("Remove Trailing Button", for: .normal)
+//        removeTrailingItemButton.addTarget(self, action: #selector(removeDefaultTrailingBarItems), for: .touchUpInside)
+//        itemCustomizationContainer.addArrangedSubview(removeTrailingItemButton)
+//
+//        let refreshTrailingItemButton = Button(style: .tertiaryOutline)
+//        refreshTrailingItemButton.setTitle("Refresh Trailing Button", for: .normal)
+//        refreshTrailingItemButton.addTarget(self, action: #selector(refreshDefaultTrailingBarItems), for: .touchUpInside)
+//        itemCustomizationContainer.addArrangedSubview(refreshTrailingItemButton)
+//
+//        let removeLeadingItemButton = Button(style: .tertiaryOutline)
+//        removeLeadingItemButton.setTitle("Remove Leading Button", for: .normal)
+//        removeLeadingItemButton.addTarget(self, action: #selector(removeDefaultLeadingBarItems), for: .touchUpInside)
+//        itemCustomizationContainer.addArrangedSubview(removeLeadingItemButton)
+//
+//        let refreshLeadingItemButton = Button(style: .tertiaryOutline)
+//        refreshLeadingItemButton.setTitle("Refresh Leading Button", for: .normal)
+//        refreshLeadingItemButton.addTarget(self, action: #selector(refreshDefaultLeadingBarItems), for: .touchUpInside)
+//        itemCustomizationContainer.addArrangedSubview(refreshLeadingItemButton)
+//
+//        let resetScrollPositionButton = Button(style: .tertiaryOutline)
+//        resetScrollPositionButton.setTitle("Reset Scroll Position", for: .normal)
+//        resetScrollPositionButton.addTarget(self, action: #selector(resetScrollPosition), for: .touchUpInside)
+//        itemCustomizationContainer.addArrangedSubview(resetScrollPositionButton)
 
         let itemEnabledStackView = createHorizontalStackView()
         itemEnabledStackView.addArrangedSubview(createLabelWithText("'+' Enabled"))

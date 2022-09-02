@@ -65,7 +65,7 @@ class NotificationViewDemoController: DemoController {
         view.backgroundColor = Colors.surfaceSecondary
 
         addTitle(text: "SwiftUI Demo")
-        container.addArrangedSubview(createButton(title: "Show", action: #selector(showSwiftUIDemo)))
+//        container.addArrangedSubview(createButton(title: "Show", action: #selector(showSwiftUIDemo)))
 
         for (index, variant) in Variant.allCases.enumerated() {
             if index > 0 {
@@ -74,7 +74,7 @@ class NotificationViewDemoController: DemoController {
                 container.addArrangedSubview(UIView())
             }
             addTitle(text: variant.displayText)
-            container.addArrangedSubview(createButton(title: "Show", action: #selector(showNotificationView)))
+//            container.addArrangedSubview(createButton(title: "Show", action: #selector(showNotificationView)))
         }
         container.alignment = .leading
     }

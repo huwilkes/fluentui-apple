@@ -94,29 +94,29 @@ class AvatarGroupDemoController: DemoTableViewController {
                 return UITableViewCell()
             }
 
-            let buttonView: [UIView] = {
-                switch row {
-                case .maxDisplayedAvatars:
-                    return [maxAvatarsTextField, maxAvatarButton]
-                case .overflow:
-                    return [overflowCountTextField, overflowCountButton]
-                default:
-                    return []
-                }
-            }()
+//            let buttonView: [UIView] = {
+//                switch row {
+//                case .maxDisplayedAvatars:
+//                    return [maxAvatarsTextField, maxAvatarButton]
+//                case .overflow:
+//                    return [overflowCountTextField, overflowCountButton]
+//                default:
+//                    return []
+//                }
+//            }()
 
-            let stackView = UIStackView(arrangedSubviews: buttonView)
-            stackView.shouldGroupAccessibilityChildren = true
-            stackView.accessibilityElements = buttonView
-            stackView.frame = CGRect(x: 0,
-                                     y: 0,
-                                     width: 120,
-                                     height: 40)
-            stackView.distribution = .fillEqually
-            stackView.alignment = .center
-            stackView.spacing = 4
-
-            cell.setup(title: row.title, customAccessoryView: stackView)
+//            let stackView = UIStackView(arrangedSubviews: buttonView)
+//            stackView.shouldGroupAccessibilityChildren = true
+//            stackView.accessibilityElements = buttonView
+//            stackView.frame = CGRect(x: 0,
+//                                     y: 0,
+//                                     width: 120,
+//                                     height: 40)
+//            stackView.distribution = .fillEqually
+//            stackView.alignment = .center
+//            stackView.spacing = 4
+//
+//            cell.setup(title: row.title, customAccessoryView: stackView)
             cell.titleNumberOfLines = 0
             return cell
 
@@ -393,15 +393,15 @@ class AvatarGroupDemoController: DemoTableViewController {
         }
     }
 
-    private lazy var maxAvatarButton: Button = {
-        let button = Button()
-        button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 0
-        button.setTitle("Set", for: .normal)
-        button.addTarget(self, action: #selector(setMaxAvatarCount), for: .touchUpInside)
-        button.isEnabled = false
-        return button
-    }()
+//    private lazy var maxAvatarButton: Button = {
+//        let button = Button()
+//        button.titleLabel?.textAlignment = .center
+//        button.titleLabel?.numberOfLines = 0
+//        button.setTitle("Set", for: .normal)
+//        button.addTarget(self, action: #selector(setMaxAvatarCount), for: .touchUpInside)
+//        button.isEnabled = false
+//        return button
+//    }()
 
     @objc private func setMaxAvatarCount() {
         let oldMax = maxDisplayedAvatars
@@ -415,7 +415,7 @@ class AvatarGroupDemoController: DemoTableViewController {
             } else {
                 maxAvatarsTextField.text = "\(oldMax)"
             }
-            maxAvatarButton.isEnabled = false
+//            maxAvatarButton.isEnabled = false
         }
 
         maxAvatarsTextField.resignFirstResponder()
@@ -442,20 +442,20 @@ class AvatarGroupDemoController: DemoTableViewController {
         }
     }
 
-    private lazy var overflowCountButton: Button = {
-        let button = Button()
-        button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 0
-        button.setTitle("Set", for: .normal)
-        button.addTarget(self, action: #selector(setOverflowCount), for: .touchUpInside)
-        button.isEnabled = false
-        return button
-    }()
+//    private lazy var overflowCountButton: Button = {
+//        let button = Button()
+//        button.titleLabel?.textAlignment = .center
+//        button.titleLabel?.numberOfLines = 0
+//        button.setTitle("Set", for: .normal)
+//        button.addTarget(self, action: #selector(setOverflowCount), for: .touchUpInside)
+//        button.isEnabled = false
+//        return button
+//    }()
 
     @objc private func setOverflowCount() {
         if let text = overflowCountTextField.text, let count = Int(text) {
             overflowCount = count
-            overflowCountButton.isEnabled = false
+//            overflowCountButton.isEnabled = false
         }
 
         overflowCountTextField.resignFirstResponder()
@@ -602,16 +602,16 @@ extension AvatarGroupDemoController: UITextFieldDelegate {
             shouldChangeCharacters = text.count <= 4
         }
 
-        let button = textField == maxAvatarsTextField ? maxAvatarButton : overflowCountButton
-        if let count = UInt(text) {
-            if textField == maxAvatarsTextField {
-                button.isEnabled = count > 0 && count != maxDisplayedAvatars
-            } else {
-                button.isEnabled = count > 0 && count != overflowCount
-            }
-        } else {
-            button.isEnabled = false
-        }
+//        let button = textField == maxAvatarsTextField ? maxAvatarButton : overflowCountButton
+//        if let count = UInt(text) {
+//            if textField == maxAvatarsTextField {
+//                button.isEnabled = count > 0 && count != maxDisplayedAvatars
+//            } else {
+//                button.isEnabled = count > 0 && count != overflowCount
+//            }
+//        } else {
+//            button.isEnabled = false
+//        }
 
         return shouldChangeCharacters
     }

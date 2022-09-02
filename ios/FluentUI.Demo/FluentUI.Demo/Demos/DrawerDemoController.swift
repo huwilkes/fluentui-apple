@@ -15,46 +15,46 @@ class DrawerDemoController: DemoController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Show", style: .plain, target: self, action: #selector(barButtonTapped))
 
         addTitle(text: "Top Drawer")
-        container.addArrangedSubview(createButton(title: "Show resizable with clear background", action: #selector(showTopDrawerButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show resizable with max content height", action: #selector(showTopDrawerWithMaxContentHeightTapped)))
-        container.addArrangedSubview(createButton(title: "Show non dismissable", action: #selector(showTopDrawerNotDismissableButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show changing resizing behaviour", action: #selector(showTopDrawerChangingResizingBehaviour)))
-        container.addArrangedSubview(createButton(title: "Show with no animation", action: #selector(showTopDrawerNotAnimatedButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show from custom base with width on landscape", action: #selector(showTopDrawerCustomOffsetButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show respecting safe area width", action: #selector(showTopDrawerSafeAreaButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show resizable with clear background", action: #selector(showTopDrawerButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show resizable with max content height", action: #selector(showTopDrawerWithMaxContentHeightTapped)))
+//        container.addArrangedSubview(createButton(title: "Show non dismissable", action: #selector(showTopDrawerNotDismissableButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show changing resizing behaviour", action: #selector(showTopDrawerChangingResizingBehaviour)))
+//        container.addArrangedSubview(createButton(title: "Show with no animation", action: #selector(showTopDrawerNotAnimatedButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show from custom base with width on landscape", action: #selector(showTopDrawerCustomOffsetButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show respecting safe area width", action: #selector(showTopDrawerSafeAreaButtonTapped)))
 
         addTitle(text: "Left/Right Drawer")
-        addRow(
-            items: [
-                createButton(title: "Show from leading with clear background", action: #selector(showLeftDrawerClearBackgroundButtonTapped)),
-                createButton(title: "Show from trailing with clear background", action: #selector(showRightDrawerClearBackgroundButtonTapped))
-            ],
-            itemSpacing: Constants.verticalSpacing,
-            stretchItems: true
-        )
-        addRow(
-            items: [
-                createButton(title: "Show from leading with dimmed background", action: #selector(showLeftDrawerDimmedBackgroundButtonTapped)),
-                createButton(title: "Show from trailing with dimmed background", action: #selector(showRightDrawerDimmedBackgroundButtonTapped))
-            ],
-            itemSpacing: Constants.verticalSpacing,
-            stretchItems: true
-        )
+//        addRow(
+//            items: [
+//                createButton(title: "Show from leading with clear background", action: #selector(showLeftDrawerClearBackgroundButtonTapped)),
+//                createButton(title: "Show from trailing with clear background", action: #selector(showRightDrawerClearBackgroundButtonTapped))
+//            ],
+//            itemSpacing: Constants.verticalSpacing,
+//            stretchItems: true
+//        )
+//        addRow(
+//            items: [
+//                createButton(title: "Show from leading with dimmed background", action: #selector(showLeftDrawerDimmedBackgroundButtonTapped)),
+//                createButton(title: "Show from trailing with dimmed background", action: #selector(showRightDrawerDimmedBackgroundButtonTapped))
+//            ],
+//            itemSpacing: Constants.verticalSpacing,
+//            stretchItems: true
+//        )
         addDescription(text: "Swipe from the left or right edge of the screen to reveal a drawer interactively")
 
         addTitle(text: "Bottom Drawer")
-        container.addArrangedSubview(createButton(title: "Show resizable", action: #selector(showBottomDrawerButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show resizable with max content height", action: #selector(showBottomDrawerWithMaxContentHeightTapped)))
-        container.addArrangedSubview(createButton(title: "Show changing resizing behaviour", action: #selector(showBottomDrawerChangingResizingBehaviour)))
-        container.addArrangedSubview(createButton(title: "Show with no animation", action: #selector(showBottomDrawerNotAnimatedButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show from custom base", action: #selector(showBottomDrawerCustomOffsetButtonTapped)))
-
-        container.addArrangedSubview(createButton(title: "Show always as slideover, resizable with dimmed background", action: #selector(showBottomDrawerCustomContentControllerDimmedBackgroundButtonTapped)))
-        container.addArrangedSubview(createButton(title: "Show always as slideover, resizable with clear background", action: #selector(showBottomDrawerCustomContentControllerClearBackgroundButtonTapped)))
-
-        container.addArrangedSubview(createButton(title: "Show with focusable content", action: #selector(showBottomDrawerFocusableContentButtonTapped)))
-
-        container.addArrangedSubview(createButton(title: "Show dismiss blocking drawer", action: #selector(showBottomDrawerBlockingDismissButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show resizable", action: #selector(showBottomDrawerButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show resizable with max content height", action: #selector(showBottomDrawerWithMaxContentHeightTapped)))
+//        container.addArrangedSubview(createButton(title: "Show changing resizing behaviour", action: #selector(showBottomDrawerChangingResizingBehaviour)))
+//        container.addArrangedSubview(createButton(title: "Show with no animation", action: #selector(showBottomDrawerNotAnimatedButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show from custom base", action: #selector(showBottomDrawerCustomOffsetButtonTapped)))
+//
+//        container.addArrangedSubview(createButton(title: "Show always as slideover, resizable with dimmed background", action: #selector(showBottomDrawerCustomContentControllerDimmedBackgroundButtonTapped)))
+//        container.addArrangedSubview(createButton(title: "Show always as slideover, resizable with clear background", action: #selector(showBottomDrawerCustomContentControllerClearBackgroundButtonTapped)))
+//
+//        container.addArrangedSubview(createButton(title: "Show with focusable content", action: #selector(showBottomDrawerFocusableContentButtonTapped)))
+//
+//        container.addArrangedSubview(createButton(title: "Show dismiss blocking drawer", action: #selector(showBottomDrawerBlockingDismissButtonTapped)))
 
         container.addArrangedSubview(UIView())
 
@@ -156,17 +156,17 @@ class DrawerDemoController: DemoController {
         spacer.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
 
         var views = [UIView]()
-        if drawerHasFlexibleHeight {
-            let expandButton = createButton(title: "Expand", action: #selector(expandButtonTapped))
-            self.expandButton = expandButton
-            views.append(createButton(title: "Change content height", action: #selector(changeContentHeightButtonTapped)))
-            views.append(expandButton)
-        }
-        views.append(createButton(title: "Dismiss", action: #selector(dismissButtonTapped)))
-        views.append(createButton(title: "Dismiss (no animation)", action: #selector(dismissNotAnimatedButtonTapped)))
-        if drawerHasToggleResizingBehaviorButton {
-            views.append(createButton(title: "Resizing - None", action: #selector(updateResizingBehaviourButtonTapped)))
-        }
+//        if drawerHasFlexibleHeight {
+//            let expandButton = createButton(title: "Expand", action: #selector(expandButtonTapped))
+//            self.expandButton = expandButton
+//            views.append(createButton(title: "Change content height", action: #selector(changeContentHeightButtonTapped)))
+//            views.append(expandButton)
+//        }
+//        views.append(createButton(title: "Dismiss", action: #selector(dismissButtonTapped)))
+//        views.append(createButton(title: "Dismiss (no animation)", action: #selector(dismissNotAnimatedButtonTapped)))
+//        if drawerHasToggleResizingBehaviorButton {
+//            views.append(createButton(title: "Resizing - None", action: #selector(updateResizingBehaviourButtonTapped)))
+//        }
         views.append(spacer)
         return views
     }
@@ -307,8 +307,8 @@ class DrawerDemoController: DemoController {
         textField.delegate = self
         container.addArrangedSubview(textField)
 
-        hideKeyboardButton.addTarget(self, action: #selector(hideKeyboardButtonTapped), for: .touchUpInside)
-        container.addArrangedSubview(hideKeyboardButton)
+//        hideKeyboardButton.addTarget(self, action: #selector(hideKeyboardButtonTapped), for: .touchUpInside)
+//        container.addArrangedSubview(hideKeyboardButton)
 
         presentDrawer(sourceView: sender, presentationDirection: .up, permittedArrowDirections: .any, contentController: contentController, resizingBehavior: .dismissOrExpand, adjustHeightForKeyboard: true)
 
@@ -371,15 +371,15 @@ class DrawerDemoController: DemoController {
     }
 
     private var shouldConfirmDrawerDismissal: Bool = false
-    private var expandButton: Button?
-
-    private let hideKeyboardButton: Button = {
-        let button = Button(style: .primaryFilled)
-        button.setTitle("Hide keyboard", for: .normal)
-        button.setContentCompressionResistancePriority(.required, for: .vertical)
-        button.setContentHuggingPriority(.required, for: .vertical)
-        return button
-    }()
+//    private var expandButton: Button?
+//
+//    private let hideKeyboardButton: Button = {
+//        let button = Button(style: .primaryFilled)
+//        button.setTitle("Hide keyboard", for: .normal)
+//        button.setContentCompressionResistancePriority(.required, for: .vertical)
+//        button.setContentHuggingPriority(.required, for: .vertical)
+//        return button
+//    }()
 }
 
 // MARK: - DrawerDemoController: UITextFieldDelegate
@@ -391,11 +391,11 @@ extension DrawerDemoController: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        hideKeyboardButton.isEnabled = true
+//        hideKeyboardButton.isEnabled = true
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        hideKeyboardButton.isEnabled = false
+//        hideKeyboardButton.isEnabled = false
     }
 }
 
@@ -419,7 +419,7 @@ extension DrawerDemoController: DrawerControllerDelegate {
         shouldConfirmDrawerDismissal = false
     }
 
-    func drawerControllerDidChangeExpandedState(_ controller: DrawerController) {
-        expandButton?.setTitle(controller.isExpanded ? "Return to normal" : "Expand", for: .normal)
-    }
+//    func drawerControllerDidChangeExpandedState(_ controller: DrawerController) {
+//        expandButton?.setTitle(controller.isExpanded ? "Return to normal" : "Expand", for: .normal)
+//    }
 }

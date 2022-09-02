@@ -38,14 +38,14 @@ class DemoController: UIViewController {
 
     var allowsContentToScroll: Bool { return true }
 
-    func createButton(title: String, action: Selector) -> Button {
-        let button = Button()
-        button.titleLabel?.textAlignment = .center
-        button.titleLabel?.numberOfLines = 0
-        button.setTitle(title, for: .normal)
-        button.addTarget(self, action: action, for: .touchUpInside)
-        return button
-    }
+//    func createButton(title: String, action: Selector) -> Button {
+//        let button = Button()
+//        button.titleLabel?.textAlignment = .center
+//        button.titleLabel?.numberOfLines = 0
+//        button.setTitle(title, for: .normal)
+//        button.addTarget(self, action: action, for: .touchUpInside)
+//        return button
+//    }
 
     @discardableResult
     func addDescription(text: String, textAlignment: NSTextAlignment = .natural) -> Label {

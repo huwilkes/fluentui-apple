@@ -24,13 +24,13 @@ class TabBarViewDemoController: DemoController {
     private let showBadgeNumbersSwitch = UISwitch()
     private let useHigherBadgeNumbersSwitch = UISwitch()
 
-    private lazy var incrementBadgeButton: Button = {
-        return createButton(title: "+", action: #selector(incrementBadgeNumbers))
-    }()
-
-    private lazy var decrementBadgeButton: Button = {
-        return createButton(title: "-", action: #selector(decrementBadgeNumbers))
-    }()
+//    private lazy var incrementBadgeButton: Button = {
+//        return createButton(title: "+", action: #selector(incrementBadgeNumbers))
+//    }()
+//
+//    private lazy var decrementBadgeButton: Button = {
+//        return createButton(title: "-", action: #selector(decrementBadgeNumbers))
+//    }()
 
     private lazy var homeItem: TabBarItem = homeItem(shouldShowTitle: false)
 
@@ -40,7 +40,7 @@ class TabBarViewDemoController: DemoController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        container.addArrangedSubview(createButton(title: "Show tooltip for Home button", action: #selector(showTooltipForHomeButton)))
+//        container.addArrangedSubview(createButton(title: "Show tooltip for Home button", action: #selector(showTooltipForHomeButton)))
 
         container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
 
@@ -53,7 +53,7 @@ class TabBarViewDemoController: DemoController {
         addRow(text: "Use higher badge numbers", items: [useHigherBadgeNumbersSwitch], textWidth: Constants.switchSettingTextWidth)
         useHigherBadgeNumbersSwitch.addTarget(self, action: #selector(handleOnSwitchValueChanged), for: .valueChanged)
 
-        addRow(text: "Modify badge numbers", items: [incrementBadgeButton, decrementBadgeButton], textWidth: Constants.buttonSettingTextWidth)
+//        addRow(text: "Modify badge numbers", items: [incrementBadgeButton, decrementBadgeButton], textWidth: Constants.buttonSettingTextWidth)
 
         setupTabBarView()
         updateBadgeButtons()
@@ -127,8 +127,8 @@ class TabBarViewDemoController: DemoController {
     }
 
     private func updateBadgeButtons() {
-        incrementBadgeButton.isEnabled = showBadgeNumbers
-        decrementBadgeButton.isEnabled = showBadgeNumbers
+//        incrementBadgeButton.isEnabled = showBadgeNumbers
+//        decrementBadgeButton.isEnabled = showBadgeNumbers
     }
 
     private func modifyBadgeNumbers(increment: Int) {
