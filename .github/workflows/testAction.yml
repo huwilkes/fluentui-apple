@@ -1,0 +1,16 @@
+name: Localize
+
+on: 
+  push:
+    branches:
+      - huwilkes/PRActions
+jobs:
+  Localize:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Create Pull Request
+      run: gh pr create -b main --title "Test PR actions" --message "still testing"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
