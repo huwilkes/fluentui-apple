@@ -2,7 +2,7 @@
 
 #simple script used to create PRs for the automated localization process
 
-newBranch="huwilkes/PRActions`date +%s"
+newBranch="huwilkes/PRActions`date +%s`"
 
 git checkout -b $newBranch
 git push --set-upstream origin $newBranch
