@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create Pull Request
-      run: scripts/create_localization_pr.sh `date +%s`
+      run: scripts/create_localization_pr.sh
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
