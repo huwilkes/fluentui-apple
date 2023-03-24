@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create Pull Request
-      run: git checkout -b "huwilkes/PRActions`date +%s`"; git push --set-upstream origin huwilkes/PRActions`date +%s`; gh pr create -B huwilkes/PRActions -H huwilkes/PRActions`date +%s` --title "Test PR actions" --body "still testing" -l "Automated PR"
+      run: scripts/create_localization_pr `date +%s`
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
