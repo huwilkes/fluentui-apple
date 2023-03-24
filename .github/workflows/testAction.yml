@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create Pull Request
-      run: gh pr create -B main --title "Test PR actions" --body "still testing" -l "Automated PR"
+      run: gh pr create -B main --title "Test PR actions" --body "still testing"
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
