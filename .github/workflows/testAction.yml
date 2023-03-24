@@ -1,4 +1,4 @@
-name: Localize
+name: Create PR
 
 on: 
   push:
@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create Pull Request
-      run: gh pr create -b main --title "Test PR actions" --message "still testing"
+      run: gh pr create -B main --title "Test PR actions" --body "still testing" -l "Automated PR"
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
