@@ -9,6 +9,7 @@ newBranch="huwilkes/PRActions`date +%s`"
 date +%s > timestamp
 
 if [[ `git status --porcelain` ]]; then
+  echo "Found changes"
   git config --global user.email $email
   git config --global user.name $name
   git add .
