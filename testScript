@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ `git status --porcelain` ]]; then
+  echo "There are changes"
+else
+  echo "No changes"
+fi

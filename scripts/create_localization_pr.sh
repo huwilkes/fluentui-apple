@@ -4,6 +4,13 @@
 
 newBranch="huwilkes/PRActions`date +%s`"
 
-git checkout -b $newBranch
-git push --set-upstream origin $newBranch
-gh pr create -B huwilkes/PRActions -H $newBranch --title 'test PR actions w/ script' --body  'new script, nice' -l 'Automated PR'
+if [[ `git status --porcelain` ]]; then
+  git add .
+  git commit -m "test commit"
+  git checkout -b $newBranch
+  git push --set-upstream origin $newBranch
+  gh pr create -B huwilkes/PRActions -H $newBranch --title 'test PR actions w/ script' --body  'new script, nice' -l 'Automated PR'
+
+else
+  echo "No changes"
+fi
