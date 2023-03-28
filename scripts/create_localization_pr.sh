@@ -2,8 +2,8 @@
 
 #simple script used to create PRs for the automated localization process
 
-email=$(<$1)
-name=$(<$2)
+email=$1
+name=$2
 newBranch="huwilkes/PRActions`date +%s`"
 
 date +%s > timestamp
