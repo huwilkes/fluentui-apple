@@ -7,6 +7,8 @@ newBranch="huwilkes/PRActions`date +%s`"
 date +%s > timestamp
 
 if [[ `git status --porcelain` ]]; then
+  git config --global user.email ${{ secrets.EMAIL }}
+  git config --global user.name ${{ secrets.NAME }}
   git add .
   git commit -m "test commit"
   git checkout -b $newBranch
