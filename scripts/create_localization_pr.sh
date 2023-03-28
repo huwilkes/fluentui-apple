@@ -4,6 +4,8 @@
 
 newBranch="huwilkes/PRActions`date +%s`"
 
+date +%s > timestamp
+
 if [[ `git status --porcelain` ]]; then
   git add .
   git commit -m "test commit"
