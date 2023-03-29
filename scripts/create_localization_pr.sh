@@ -2,12 +2,13 @@
 
 #simple script used to create PRs for the automated localization process
 
-name=$1
+
 newBranch="huwilkes/PRActions`date +%s`"
-date +%s  > timestamp
+
 if [[ `git status --porcelain` ]]; then
   echo "Found changes"
-  git config --global user.name $name
+  git config --global user.email $EMAIL
+  git config --global user.name $NAME
   git add .
   git commit -m "test commit"
   git checkout -b $newBranch
