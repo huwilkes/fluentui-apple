@@ -4,7 +4,7 @@
 
 name=$1
 newBranch="huwilkes/PRActions`date +%s`"
-
+date +%s  > timestamp
 if [[ `git status --porcelain` ]]; then
   echo "Found changes"
   git config --global user.name $name
