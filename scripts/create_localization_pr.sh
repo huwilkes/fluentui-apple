@@ -4,6 +4,7 @@
 
 
 newBranch="huwilkes/PRActions`date +%s`"
+echo $NAME
 date +%s > timestamp
 if [[ `git status --porcelain` ]]; then
   echo "Found changes"
