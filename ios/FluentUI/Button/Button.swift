@@ -160,9 +160,50 @@ open class Button: UIButton, Shadowable, TokenizedControlInternal {
         return NSDirectionalEdgeInsets(top: 0, leading: leadingPadding, bottom: 0, trailing: trailingPadding)
     }
 
-    public typealias TokenSetKeyType = ButtonTokenSet.Tokens
+    public typealias TokenSetKeyType = ButtonTokens
     public var ambientShadow: CALayer?
     public var keyShadow: CALayer?
+
+    // Would be cool if we could condense to one func, but `ControlTokenValue` isn't objc representable.
+    //  @objc public func set(_ token: ButtonTokens, to value: ControlTokenValue) {
+    //    tokenSet[token] = value
+    //  }
+
+    @objc(setToken:toColor:)
+    public func set(token: ButtonTokens, to color: UIColor) {
+        tokenSet[token] = .uiColor { color }
+    }
+
+    @objc public func getColor(for token: ButtonTokens) -> UIColor {
+        return tokenSet[token].uiColor
+    }
+
+    @objc(setToken:toFont:)
+    public func set(token: ButtonTokens, to font: UIFont) {
+        tokenSet[token] = .uiFont { font }
+    }
+
+    @objc public func getFont(for token: ButtonTokens) -> UIFont {
+        return tokenSet[token].uiFont
+    }
+
+    @objc(setToken:toFloat:)
+    public func set(token: ButtonTokens, to float: CGFloat) {
+        tokenSet[token] = .float { float }
+    }
+
+    @objc public func getFloat(for token: ButtonTokens) -> CGFloat {
+        return tokenSet[token].float
+    }
+
+    @objc(setToken:toShadow:)
+    public func set(token: ButtonTokens, to shadow: ShadowInfo) {
+        tokenSet[token] = .shadowInfo { shadow }
+    }
+
+    @objc public func getShadow(for token: ButtonTokens) -> ShadowInfo {
+        return tokenSet[token].shadowInfo
+    }
 
     lazy public var tokenSet: ButtonTokenSet = .init(style: { [weak self] in
         return self?.style ?? .outline

@@ -50,7 +50,8 @@
 
     MSFButton *testTokensButton = [self createButtonWithTitle:@"Test global and alias" action:@selector(tokensButtonPressed:)];
     [self.container addArrangedSubview:testTokensButton];
-
+    [testTokensButton setToken:MSFButtonTokensForegroundColor toColor:[UIColor blackColor]];
+    UIColor *color = [testTokensButton getColorFor:MSFButtonTokensForegroundColor];
 
     MSFButton *testOverridesButton = [self createButtonWithTitle:@"Test overrides" action:@selector(overridesButtonPressed:)];
     [self.container addArrangedSubview:testOverridesButton];

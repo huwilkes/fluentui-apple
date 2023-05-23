@@ -206,7 +206,7 @@ extension ButtonDemoController: DemoAppearanceDelegate {
 
     // MARK: - Custom tokens
 
-    private var themeWideOverrideButtonTokens: [ButtonTokenSet.Tokens: ControlTokenValue] {
+    private var themeWideOverrideButtonTokens: [ButtonTokens: ControlTokenValue] {
         return [
             .titleFont: .uiFont {
                 return UIFont(descriptor: .init(name: "Times", size: 20.0),
@@ -224,7 +224,7 @@ extension ButtonDemoController: DemoAppearanceDelegate {
         ]
     }
 
-    private var perControlOverrideButtonTokens: [ButtonTokenSet.Tokens: ControlTokenValue] {
+    private var perControlOverrideButtonTokens: [ButtonTokens: ControlTokenValue] {
         return [
             .titleFont: .uiFont {
                 return UIFont(descriptor: .init(name: "Papyrus", size: 20.0),
